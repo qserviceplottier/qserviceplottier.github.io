@@ -5,66 +5,81 @@
     <meta property="og:title" content="QService">
     <meta property="og:description" content="Servicio tecnico y accesorios">
     <meta property="og:image" content="https://github.com/qserviceplottier/qserviceplottier.github.io/blob/main/logo.png?raw=true">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
     <meta property="og:url" content="https://www.qservice.com.ar">
     <meta property="og:type" content="website">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="manifest" href="site.webmanifest">
     <title>QService</title>
 
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://apis.google.com/js/api.js"></script>
+
     <script>
+        const CLIENT_ID = "24661140847-miqojfnt2q944t68bsvo662hurmf6qse.apps.googleusercontent.com";
+        const API_KEY = "AIzaSyDPgtX_0I7pMWx6tnr_j9b48WXrflFr16g";
+        const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
+        const SCOPES = "https://www.googleapis.com/auth/calendar.events";
+
+        function initClient() {
+            gapi.client.init({
+                apiKey: API_KEY,
+                clientId: CLIENT_ID,
+                discoveryDocs: DISCOVERY_DOCS,
+                scope: SCOPES
+            }).then(() => {
+                console.log("API de Google Calendar lista");
+            }).catch(error => {
+                console.error("Error al inicializar la API de Google:", error);
+            });
+        }
+
         function handleAuthClick() {
             gapi.load('client:auth2', () => {
-                gapi.client.init({
-                    apiKey: 'AIzaSyDPgtX_0I7pMWx6tnr_j9b48WXrflFr16g',
-                    clientId: '24661140847-miqojfnt2q944t68bsvo662hurmf6qse.apps.googleusercontent.com',
-                    discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"],
-                    scope: "https://www.googleapis.com/auth/calendar.events"
-                }).then(() => {
+                gapi.auth2.init({ client_id: CLIENT_ID }).then(() => {
                     gapi.auth2.getAuthInstance().signIn().then(createEvent);
+                }).catch(error => {
+                    console.error("Error en autenticación:", error);
                 });
             });
         }
-        
+
         function createEvent() {
-            var event = {
-                'summary': 'Cita con Cliente',
-                'location': 'Online',
-                'description': 'Consulta sobre servicios',
-                'start': {
-                    'dateTime': '2025-02-20T14:00:00-03:00',
-                    'timeZone': 'America/Argentina/Buenos_Aires'
+            const event = {
+                summary: 'Cita con Cliente',
+                location: 'Online',
+                description: 'Consulta sobre servicios',
+                start: {
+                    dateTime: '2025-02-20T14:00:00-03:00',
+                    timeZone: 'America/Argentina/Buenos_Aires'
                 },
-                'end': {
-                    'dateTime': '2025-02-20T15:00:00-03:00',
-                    'timeZone': 'America/Argentina/Buenos_Aires'
+                end: {
+                    dateTime: '2025-02-20T15:00:00-03:00',
+                    timeZone: 'America/Argentina/Buenos_Aires'
                 },
-                'attendees': [
-                    {'email': 'cliente@example.com'}
-                ],
-                'reminders': {
-                    'useDefault': false,
-                    'overrides': [
-                        {'method': 'email', 'minutes': 24 * 60},
-                        {'method': 'popup', 'minutes': 10}
+                attendees: [{ email: 'cliente@example.com' }],
+                reminders: {
+                    useDefault: false,
+                    overrides: [
+                        { method: 'email', minutes: 24 * 60 },
+                        { method: 'popup', minutes: 10 }
                     ]
                 }
             };
-            
-            var request = gapi.client.calendar.events.insert({
-                'calendarId': 'primary',
-                'resource': event
-            });
-            
-            request.execute((event) => {
-                alert('Cita agendada: ' + event.htmlLink);
+
+            gapi.client.calendar.events.insert({
+                calendarId: 'primary',
+                resource: event
+            }).then(response => {
+                alert('Cita agendada: ' + response.result.htmlLink);
+            }).catch(error => {
+                console.error("Error al crear el evento:", error);
             });
         }
+
+        function handleClientLoad() {
+            gapi.load("client:auth2", initClient);
+        }
     </script>
+
+    <script async defer src="https://apis.google.com/js/api.js" onload="handleClientLoad()"></script>
 
     <style>
         body {

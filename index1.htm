@@ -31,19 +31,22 @@
             });
         }
 
-function handleAuthClick() {
-    gapi.load('client:auth2', () => {
-        if (gapi.auth2.getAuthInstance()) {
-            // Si ya está inicializado, solo inicia sesión
-            gapi.auth2.getAuthInstance().signIn().then(createEvent);
-        } else {
-            // Si no está inicializado, lo inicializa y luego inicia sesión
-            gapi.auth2.init({ client_id: CLIENT_ID }).then(() => {
-                gapi.auth2.getAuthInstance().signIn().then(createEvent);
-            });
-        }
-    });
-}
+<script>
+    function openGoogleCalendar() {
+        const baseUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE";
+        const title = encodeURIComponent("Cita con QService");
+        const details = encodeURIComponent("Consulta sobre servicios técnicos");
+        const location = encodeURIComponent("QService");
+        const startDate = "20250220T140000"; // Formato YYYYMMDDTHHMMSS
+        const endDate = "20250220T150000";
+        const timeZone = encodeURIComponent("America/Argentina/Buenos_Aires");
+
+        const fullUrl = `${baseUrl}&text=${title}&details=${details}&location=${location}&dates=${startDate}/${endDate}&ctz=${timeZone}`;
+
+        window.open(fullUrl, "_blank");
+    }
+</script>
+
 
         function createEvent() {
             const event = {
@@ -129,6 +132,6 @@ function handleAuthClick() {
 <body>
     <img src="logo.png" alt="Logo de QService">
     <h1>Reservar una cita</h1>
-    <button onclick="handleAuthClick()">Agendar en Google Calendar</button>
+<button onclick="openGoogleCalendar()">Agendar en Google Calendar</button>
 </body>
 </html>

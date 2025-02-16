@@ -31,15 +31,19 @@
             });
         }
 
-        function handleAuthClick() {
-            gapi.load('client:auth2', () => {
-                gapi.auth2.init({ client_id: CLIENT_ID }).then(() => {
-                    gapi.auth2.getAuthInstance().signIn().then(createEvent);
-                }).catch(error => {
-                    console.error("Error en autenticación:", error);
-                });
+function handleAuthClick() {
+    gapi.load('client:auth2', () => {
+        if (gapi.auth2.getAuthInstance()) {
+            // Si ya está inicializado, solo inicia sesión
+            gapi.auth2.getAuthInstance().signIn().then(createEvent);
+        } else {
+            // Si no está inicializado, lo inicializa y luego inicia sesión
+            gapi.auth2.init({ client_id: CLIENT_ID }).then(() => {
+                gapi.auth2.getAuthInstance().signIn().then(createEvent);
             });
         }
+    });
+}
 
         function createEvent() {
             const event = {

@@ -1,19 +1,115 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta property="og:title" content="QService">
     <meta property="og:description" content="Servicio tecnico y accesorios">
-    <meta property="og:image" content="https://www.facebook.com/photo/?fbid=425288991446514&set=a.103751096933640">
+    <meta property="og:image" content="https://github.com/qserviceplottier/qserviceplottier.github.io/blob/main/logo.png?raw=true">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:url" content="https://www.qservice.com.ar">
     <meta property="og:type" content="website">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="manifest" href="site.webmanifest">
-<title>QService</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <title>QService</title>
+
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script>
+        function handleAuthClick() {
+            gapi.load('client:auth2', () => {
+                gapi.client.init({
+                    apiKey: 'AIzaSyDPgtX_0I7pMWx6tnr_j9b48WXrflFr16g',
+                    clientId: '24661140847-miqojfnt2q944t68bsvo662hurmf6qse.apps.googleusercontent.com',
+                    discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"],
+                    scope: "https://www.googleapis.com/auth/calendar.events"
+                }).then(() => {
+                    gapi.auth2.getAuthInstance().signIn().then(createEvent);
+                });
+            });
+        }
+        
+        function createEvent() {
+            var event = {
+                'summary': 'Cita con Cliente',
+                'location': 'Online',
+                'description': 'Consulta sobre servicios',
+                'start': {
+                    'dateTime': '2025-02-20T14:00:00-03:00',
+                    'timeZone': 'America/Argentina/Buenos_Aires'
+                },
+                'end': {
+                    'dateTime': '2025-02-20T15:00:00-03:00',
+                    'timeZone': 'America/Argentina/Buenos_Aires'
+                },
+                'attendees': [
+                    {'email': 'cliente@example.com'}
+                ],
+                'reminders': {
+                    'useDefault': false,
+                    'overrides': [
+                        {'method': 'email', 'minutes': 24 * 60},
+                        {'method': 'popup', 'minutes': 10}
+                    ]
+                }
+            };
+            
+            var request = gapi.client.calendar.events.insert({
+                'calendarId': 'primary',
+                'resource': event
+            });
+            
+            request.execute((event) => {
+                alert('Cita agendada: ' + event.htmlLink);
+            });
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+
+        img {
+            width: 50vw;
+            max-width: 400px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        button {
+            font-size: 1.5rem;
+            padding: 20px 40px;
+            background-color: white;
+            color: blue;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 25vw;
+            max-width: 300px;
+        }
+
+        button:hover {
+            background-color: lightblue;
+        }
+    </style>
 </head>
 <body>
- <button onclick="window.location.href='https://linktr.ee/qservice';">ENTRAR</button>
+    <img src="logo.png" alt="Logo de QService">
+    <h1>Reservar una cita</h1>
+    <button onclick="handleAuthClick()">Agendar en Google Calendar</button>
 </body>
 </html>

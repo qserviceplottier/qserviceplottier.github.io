@@ -20,8 +20,16 @@
             display: flex;
             justify-content: center; /* Centra el contenido horizontalmente */
             align-items: center; /* Centra el contenido verticalmente */
+            flex-direction: column; /* Apila los elementos verticalmente */
             height: 100vh; /* Asegura que ocupe toda la pantalla */
             margin: 0; /* Elimina márgenes por defecto */
+        }
+
+        /* Estilo para la imagen */
+        img {
+            width: 50vw; /* El ancho será el 50% del ancho de la ventana */
+            max-width: 400px; /* Limita el tamaño máximo de la imagen */
+            margin-bottom: 20px; /* Espacio entre la imagen y el botón */
         }
 
         /* Estilo para el botón */
@@ -34,7 +42,7 @@
             border-radius: 10px; /* Bordes redondeados */
             cursor: pointer; /* Cambia el cursor al pasar por encima */
             transition: background-color 0.3s ease; /* Animación suave para el cambio de fondo */
-            width: 50vw; /* El ancho será el 50% del ancho de la ventana */
+            width: 25vw; /* El ancho será el 25% del ancho de la ventana */
             max-width: 300px; /* Limita el tamaño máximo del botón */
         }
 
@@ -45,6 +53,11 @@
     </style>
 </head>
 <body>
+    <!-- Imagen centrada arriba del botón -->
+    <img src="logo.png" alt="Logo de QService">
+    
+    <!-- Botón -->
     <button onclick="window.location.href='https://linktr.ee/qservice';">ENTRAR</button>
 </body>
 </html>
+

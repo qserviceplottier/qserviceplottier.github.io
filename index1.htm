@@ -34,6 +34,7 @@
             justify-content: center;
             align-items: center;
             height: auto;
+            margin-bottom: 20px;
         }
         
         video, img {
@@ -57,7 +58,8 @@
             transition: background-color 0.3s ease;
             width: 25vw;
             max-width: 300px;
-            margin-top: 20px;
+            position: relative;
+            z-index: 10; /* Asegura que el botón quede siempre arriba */
         }
 
         button:hover {
@@ -68,7 +70,7 @@
 <body>
     <div id="video-container">
         <video id="intro-video" autoplay muted>
-            <source src="Logo.mp4" type="video/mp4">
+            <source src="logo.mp4" type="video/mp4">
             Tu navegador no soporta el video.
         </video>
         <img id="static-image" src="logo.png" alt="Logo de QService">

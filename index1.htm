@@ -29,6 +29,7 @@
         #video-container {
             width: 50vw;
             max-width: 400px;
+            position: relative;
         }
         
         video, img {
@@ -38,6 +39,9 @@
         
         #static-image {
             display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
 
         button {
@@ -62,7 +66,7 @@
 <body>
     <div id="video-container">
         <video id="intro-video" autoplay>
-            <source src="Logo.mp4" type="video/mp4">
+            <source src="logo.mp4" type="video/mp4">
             Tu navegador no soporta el video.
         </video>
         <img id="static-image" src="logo.png" alt="Logo de QService">
@@ -73,6 +77,11 @@
     <script>
         const video = document.getElementById("intro-video");
         const image = document.getElementById("static-image");
+
+        video.onplay = function() {
+            video.style.display = "block";
+            image.style.display = "none";
+        };
 
         video.onended = function() {
             video.style.display = "none";

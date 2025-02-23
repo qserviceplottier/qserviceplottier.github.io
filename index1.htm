@@ -30,18 +30,20 @@
             width: 50vw;
             max-width: 400px;
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: auto;
         }
         
         video, img {
             width: 100%;
             height: auto;
+            position: absolute;
         }
         
         #static-image {
             display: none;
-            position: absolute;
-            top: 0;
-            left: 0;
         }
 
         button {
@@ -66,7 +68,7 @@
 <body>
     <div id="video-container">
         <video id="intro-video" autoplay muted>
-            <source src="Logo.mp4" type="video/mp4">
+            <source src="logo.mp4" type="video/mp4">
             Tu navegador no soporta el video.
         </video>
         <img id="static-image" src="logo.png" alt="Logo de QService">

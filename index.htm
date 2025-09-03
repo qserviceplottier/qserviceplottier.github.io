@@ -51,4 +51,36 @@
             font-weight: bold;
             text-align: center;
             text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
-            b
+            box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+        }
+
+        .logo-img {
+            width: 50vw;
+            max-width: 400px;
+            margin-bottom: 20px;
+        }
+
+        .button-img {
+            width: 25vw;
+            max-width: 300px;
+            cursor: pointer;
+            transition: transform 0.2s ease, filter 0.2s ease;
+        }
+
+        .button-img:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        .button-img:active {
+            transform: translateY(0);
+            filter: brightness(0.9);
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-text">BIENVENIDO!!</div>
+    <img src="logo.png" alt="Logo de QService" class="logo-img">
+    <img src="boton.png" alt="Botón Entrar" class="button-img" onclick="window.location.href='https://linktr.ee/qservice';">
+</body>
+</html>

@@ -29,47 +29,26 @@
     <title>QService</title>
 
     <style>
-        /* Estilo general para el fondo y cuerpo */
         body {
-            background-color: black; /* Fondo negro */
+            background-color: black;
             display: flex;
-            justify-content: center; /* Centra el contenido horizontalmente */
-            align-items: center; /* Centra el contenido verticalmente */
-            flex-direction: column; /* Apila los elementos verticalmente */
-            height: 100vh; /* Asegura que ocupe toda la pantalla */
-            margin: 0; /* Elimina márgenes por defecto */
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
         }
 
-        /* Estilo para la imagen del logo */
-        .logo-img {
-            width: 50vw; /* El ancho será el 50% del ancho de la ventana */
-            max-width: 400px; /* Limita el tamaño máximo de la imagen */
-            margin-bottom: 20px; /* Espacio entre la imagen y el botón */
-        }
-
-        /* Estilo para la imagen que funcionará como botón */
-        .button-img {
-            width: 25vw; /* El ancho del botón, similar a como lo tenías */
-            max-width: 300px; /* Limita el tamaño máximo del botón */
-            cursor: pointer; /* Indica que es clickeable */
-            transition: transform 0.2s ease, filter 0.2s ease; /* Transición suave para el efecto hover */
-        }
-
-        .button-img:hover {
-            transform: translateY(-2px); /* Ligerita elevación al pasar el mouse */
-            filter: brightness(1.1); /* Un poco más de brillo para el efecto hover */
-        }
-
-        /* Nuevo estilo para el efecto al hacer clic */
-        .button-img:active {
-            transform: translateY(0); /* Vuelve a su posición original (simula el "hundimiento") */
-            filter: brightness(0.9); /* Oscurece un poco para simular el "presionado" */
-        }
-    </style>
-</head>
-<body>
-    <img src="logo.png" alt="Logo de QService" class="logo-img">
-    
-    <img src="boton.png" alt="Botón Entrar" class="button-img" onclick="window.location.href='https://linktr.ee/qservice';">
-</body>
-</html>
+        /* Texto de bienvenida */
+        .welcome-text {
+            font-size: 2.5em;
+            color: white;
+            background: linear-gradient(180deg, #00aaff, #0077cc);
+            padding: 10px 30px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            text-align: center;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+            b

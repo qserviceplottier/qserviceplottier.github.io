@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Quiénes somos — QService</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #fafafa;
+      --card: #ffffff;
+      --muted: #6b7280;
+      --accent: #0ea5a4; /* tono turquesa suave */
+      --accent-dark: #057b78;
+      --shadow: 0 10px 30px rgba(15,23,42,0.08);
+      --radius: 16px;
+    }
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+      color:#0f172a;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      padding:32px;
+    }
+
+    /* Container */
+.container{
+  max-width:1100px;
+  margin:40px auto 0 auto;
+  background:var(--card);
+  border-radius:12px;
+  box-shadow:var(--shadow);
+  padding:28px;
+  display:grid;
+  grid-template-columns: 360px 1fr;
+  gap:28px;
+  align-items:start;
+  opacity:0;
+  transform:translateY(25px);
+  animation: fadeInUp 1.2s ease-out forwards;
+}
+
+    /* Adaptable layout for small screens */
+    @media (max-width:880px){
+      .container{
+        grid-template-columns: 1fr;
+        padding:20px;
+      }
+    }
+
+    /* Photo column */
+    .photo-card{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:18px;
+      text-align:center;
+    }
+
+    .photo-wrap{
+      width:320px;
+      height:320px;
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow: 0 20px 40px rgba(2,6,23,0.12), inset 0 1px 0 rgba(255,255,255,0.06);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(180deg,#f6fbfb,#ffffff);
+    }
+
+    @media (max-width:520px){
+      .photo-wrap{ width:220px; height:220px; border-radius:14px;}
+    }
+
+    .photo{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .name{
+      font-weight:700;
+      font-size:20px;
+      letter-spacing:0.2px;
+      color:#06202a;
+    }
+
+    .roles{
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    /* Text column */
+    .content{
+      padding:6px 4px;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      background:rgba(14,165,164,0.12);
+      color:var(--accent-dark);
+      padding:6px 10px;
+      border-radius:999px;
+      font-weight:600;
+      font-size:13px;
+      margin-bottom:12px;
+    }
+
+    h1{
+      margin:6px 0 14px 0;
+      font-size:28px;
+      line-height:1.05;
+    }
+
+    p.lead{
+      color:#0b1320;
+      margin:0 0 18px 0;
+      font-size:15.5px;
+    }
+
+    .meta-list{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      margin:18px 0 10px 0;
+    }
+
+    .meta-item{
+      background:rgba(2,6,23,0.03);
+      border-radius:12px;
+      padding:10px 14px;
+      font-size:14px;
+      color: #0f172a;
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+
+    .meta-item strong{ font-weight:700; }
+
+    .divider{
+      height:1px;
+      background:linear-gradient(90deg, rgba(2,6,23,0.04), rgba(2,6,23,0.02));
+      margin:18px 0;
+      border-radius:2px;
+    }
+
+    .long-text{
+      color:var(--muted);
+      font-size:15px;
+      white-space:pre-wrap; /* permite pegar texto con saltos */
+    }
+
+    /* Callout */
+    .callout{
+      margin-top:18px;
+      background:linear-gradient(90deg, #ffffff, rgba(14,165,164,0.03));
+      border-left:4px solid var(--accent);
+      padding:12px 14px;
+      border-radius:8px;
+      font-weight:600;
+      color:#064546;
+      display:inline-block;
+    }
+
+    /* Small footer link */
+    .back-home{
+      margin-top:22px;
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      font-size:14px;
+      color:var(--muted);
+      text-decoration:none;
+      border-radius:8px;
+      padding:8px 10px;
+    }
+
+    /* Subtle 3D heading (optional) */
+    .title-3d{
+      display:inline-block;
+      position:relative;
+      font-weight:800;
+      color:#06202a;
+      padding-right:6px;
+    }
+    .title-3d::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      transform:translate(6px,6px);
+      background:linear-gradient(180deg, rgba(2,6,23,0.03), rgba(2,6,23,0.02));
+      z-index:-1;
+      border-radius:6px;
+    }
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Efecto más sutil para la foto y el texto */
+.photo-card, .content {
+  opacity: 0;
+  animation: fadeInSub 1s ease-out forwards;
+}
+
+.photo-card {
+  animation-delay: 0.3s;
+}
+
+.content {
+  animation-delay: 0.6s;
+}
+
+@keyframes fadeInSub {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* --- ANIMACIONES DE ENTRADA --- */
+
+/* Contenedor principal con fade-in y desplazamiento */
+.container {
+  max-width: 1100px;
+  margin: 40px auto 0 auto;
+  background: var(--card);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 28px;
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 28px;
+  align-items: start;
+  opacity: 0;
+  transform: translateY(25px);
+  animation: fadeInUp 1.2s ease-out forwards;
+}
+
+/* Animaciones base */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.photo-card,
+.content {
+  opacity: 0;
+  animation: fadeInSub 1s ease-out forwards;
+}
+
+.photo-card {
+  animation-delay: 0.3s;
+}
+
+.content {
+  animation-delay: 0.6s;
+}
+
+@keyframes fadeInSub {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- EFECTO DE ZOOM SUTIL EN LA FOTO --- */
+
+.photo {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  transform: scale(1.05);
+  opacity: 0;
+  animation: zoomFadeIn 1.6s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes zoomFadeIn {
+  0% {
+    transform: scale(1.15);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+  </style>
+</head>
+<body>
+  <main class="container" role="main">
+    <!-- FOTO Y NOMBRE -->
+    <aside class="photo-card" aria-label="Foto y datos">
+      <div class="photo-wrap">
+        <!-- REEMPLAZAR: sustituí 'foto-nico.jpg' con el nombre de tu archivo. Mantener la ruta relativa correcta -->
+        <img class="photo" src="Pablo.jpg" alt="Foto de Pablo Quis" />
+      </div>
+
+      <div>
+        <div class="name">Pablo Quis</div>
+        <div class="roles">Dueño y responsable técnico - QService</div>
+      </div>
+
+      <div style="margin-top:8px; width:100%; display:flex; justify-content:center;">
+        <div class="callout">+20 años de experiencia · Honestidad, responsabilidad y consciencia</div>
+      </div>
+    </aside>
+
+    <!-- TEXTO PRINCIPAL -->
+    <section class="content" aria-label="Quiénes somos - texto">
+      <span class="eyebrow">Quiénes somos</span>
+      <h1><span class="title-3d">Pablo Quis</span> — Dueño y responsable técnico</h1>
+
+      <!-- PÁRRAFO BREVE (resume la idea) -->
+      <p class="lead">
+        <!-- REEMPLAZAR: Pega aquí el texto corto que acompañará a la fotografía. -->
+ </p>
+
+      <div class="meta-list" aria-hidden="true">
+        <div class="meta-item"><strong>+20</strong> años de experiencia</div>
+        <div class="meta-item"><strong>7</strong> años activo en Plottier</div>
+        <div class="meta-item"><strong>6</strong> meses activo en Neuquén</div>
+      </div>
+
+      <div class="divider" role="separator"></div>
+
+      <!-- TEXTO LARGO: AQUÍ PEGAS EL TEXTO COMPLETO -->
+      <div class="long-text">
+        <!-- REEMPLAZAR: Pega aquí el texto completo que acompañará a la foto. 
+             Puedes incluir párrafos, saltos de línea y listas. -->
+<p>Nací en el ‘83 en <strong>Bahía Blanca</strong> y me crié desde los 3 años en <strong>Sierra de la Ventana</strong>, un pueblito al sur de la provincia de Buenos Aires. Allí, en mi adolescencia, tuve mis primeros acercamientos a las computadoras y nació una pasión que me acompaña hasta hoy: la tecnología.</p>
+
+<p>Es difícil determinar en qué momento empieza mi carrera como reparador de computadoras, porque es algo que se fue dando de a poco. Pero alrededor de los 17 años tuve mi primer trabajo formal en un cyber, en el que, además de atender al público, hacía el mantenimiento de las PC del local. Unos años después me fui a vivir a Bahía Blanca, donde reforcé mi aprendizaje con algunos cursos y una carrera de Analista (que no terminé). Allí también trabajé con mi primer gran mentor, <strong>Roberto Silvestri</strong>, quien me dio las bases que hoy siguen siendo los pilares de mi negocio: el trabajo a conciencia (hacer lo mío como si fuera para otro, y lo de otros como si fuera para mí), la honestidad y la responsabilidad.</p>
+
+<p><strong>QService</strong> nació en el año 2010, cuando, junto a mi hermano, decidimos iniciar nuestro propio negocio de servicio técnico. Usamos para el nombre la “Q” de nuestro apellido, seguida de “Service”, y diseñamos el logo con la bolsa de compras y el botón de encendido representando la Q invertida.</p>
+
+<p>A los pocos meses de iniciar, conocí a la mamá de mi hijo, me mudé a Neuquén, y el negocio quedó en manos de mi hermano, quien lo continuó solo durante los siguientes 8 años, mientras yo incursionaba en otras actividades y rubros. En 2018, ya separado, me mudé a la ciudad de <strong>Plottier</strong> para retomar la actividad como técnico, que hacía tiempo me venía llamando desde las entrañas. Previa charla con mi hermano, seguí con el legado de la idea original y retomé el mismo nombre y el mismo logo, dando inicio a <strong>QService Plottier</strong>.</p>
+
+<p>Después de unos meses de batallar para ir haciéndome un lugar en el mercado, empecé a formar redes de confianza y trabajo compartido con algunos técnicos de la zona, creando alianzas que me permitieron agregar otros rubros a mi actividad principal, que era la reparación de PC. Así incursioné en la reparación de celulares —que hoy es mi rubro principal— y empecé a recibir impresoras, con el respaldo de <strong>Maxy de Ferlubru</strong>, y televisores, con el acompañamiento de <strong>Cristian de MyC</strong>.</p>
+
+<p>Finalmente, a mediados de 2025, inauguramos en Neuquén el <strong>taller de co-working de MyC</strong>, en el que unificamos los cuatro rubros: TV, impresoras, computadoras y celulares, ampliando los horizontes y con expectativas de seguir sumando nuevos sectores.</p>
+
+<p>Hoy, <strong>QService Plottier</strong> ya está consolidado como uno de los principales servicios técnicos de la ciudad, con una amplia cartera de clientes que confían día a día en mi trabajo, y sumando constantemente nuevos clientes que llegan por búsquedas en Google, folletos, tarjetas de contacto y, principalmente, por la recomendación boca a boca.</p>
+
+<p>Con la firme convicción de que el único requisito para que un negocio funcione es <strong>hacer bien el trabajo</strong>, y con los pilares de <strong>trabajar a conciencia, con honestidad y responsabilidad</strong>, día a día QService crece y se fortalece como un servicio técnico de confianza, logrando destacarse en un mercado que avanza a pasos agigantados.</p>
+
+<p>Mi meta en los próximos años, como dueño de QService, es convertir mi negocio en una empresa que pueda brindar oportunidades de empleo y capacitación a los nuevos técnicos que deseen iniciarse en este apasionante mundo de la tecnología.</p>
+
+<p><strong>QService – Seguí comunicándote.</strong></p>
+      </div>
+
+      <!-- OPCIONAL: CTA o contacto rápido -->
+      <div style="margin-top:16px;">
+        <a class="back-home" href="https://linktr.ee/qservice" title="Volver al inicio">← Volver</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- NOTAS: instrucciones rápidas para usar -->
+  <!--
+    INSTRUCCIONES:
+    1) Reemplazá 'foto-nico.jpg' por el archivo de tu foto (subila al mismo directorio o ajustá la ruta).
+    2) Reemplazá el párrafo dentro de <p class="lead"> con el texto corto que querés que aparezca junto a la foto.
+    3) Reemplazá el bloque dentro de <div class="long-text"> con el texto extendido que me vas a enviar.
+    4) Si querés que la foto sea circular en vez de rectángulo, avisame y te doy la variante CSS.
+    5) Si querés que inserte la foto real y ajuste recorte/brillo/contraste, subila aquí y la adapto en la misma página.
+  -->
+</body>
+</html>

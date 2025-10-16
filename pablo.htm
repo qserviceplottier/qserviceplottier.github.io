@@ -6,7 +6,8 @@
   <title>Quiénes somos — QService</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{
+    /* VARIABLES Y RESET BÁSICO */
+    :root {
       --bg: #fafafa;
       --card: #ffffff;
       --muted: #6b7280;
@@ -14,403 +15,332 @@
       --accent-dark: #057b78;
       --shadow: 0 10px 30px rgba(15,23,42,0.08);
       --radius: 16px;
+      --padding-mobile: 20px;
+      --padding-tablet: 28px;
+      --padding-desktop: 32px;
+      --gap-mobile: 15px;
+      --gap-desktop: 28px;
     }
-    html,body{height:100%}
-    body{
-      margin:0;
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box; /* Fundamental para control del layout */
+      overflow-x: hidden; /* Previene scroll horizontal accidental */
+    }
+
+    body {
       font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
       background: linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
       color:#0f172a;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
-      line-height:1.5;
-      padding:32px; /* Padding por defecto para pantallas grandes */
-      box-sizing: border-box; /* Muy importante para evitar desbordamientos */
-      overflow-x: hidden; /* Asegura que no haya scroll horizontal no deseado */
+      line-height:1.6; /* Un poco más de interlineado para mejor lectura */
+      padding: var(--padding-mobile); /* Mobile first padding */
     }
 
-    /* Ajuste de padding para pantallas más pequeñas */
-    @media (max-width: 768px) {
-      body {
-        padding: 20px;
-      }
+    *, *::before, *::after {
+      box-sizing: inherit; /* Heredar box-sizing */
     }
 
-    @media (max-width: 480px) {
-      body {
-        padding: 15px;
-      }
-    }
+    /* CONTENEDOR PRINCIPAL - MOBILE FIRST */
+    .container {
+      width: 100%; /* Ocupa todo el ancho disponible en móvil */
+      max-width: 1100px; /* Ancho máximo para el escritorio */
+      margin: 20px auto; /* Centrado y margen superior/inferior para móvil */
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: var(--padding-mobile); /* Padding para móvil */
+      display: flex; /* Usamos Flexbox para el layout principal */
+      flex-direction: column; /* Apila elementos verticalmente por defecto (móvil) */
+      gap: var(--gap-mobile); /* Espacio entre elementos apilados */
 
-    /* Container - Estilo por defecto para escritorio */
-    .container{
-      max-width:1100px; /* Ancho máximo para escritorio */
-      margin:40px auto 0 auto;
-      background:var(--card);
-      border-radius:12px;
-      box-shadow:var(--shadow);
-      padding:28px;
-      display:grid; /* Usamos Grid para escritorio (dos columnas) */
-      grid-template-columns: 360px 1fr;
-      gap:28px;
-      align-items:start;
       opacity:0;
       transform:translateY(25px);
       animation: fadeInUp 1.2s ease-out forwards;
-      box-sizing: border-box; /* Asegurar que el padding se incluya en el ancho */
     }
 
-    /* **BREAKPOINT CLAVE PARA MÓVILES** */
-    /* Aquí forzamos la estructura de una sola columna usando Flexbox */
-    @media (max-width: 768px){ /* Cambiamos a 768px para abarcar tabletas y móviles */
-      .container{
-        display: flex; /* **¡Ahora usamos Flexbox!** */
-        flex-direction: column; /* Apilamos los elementos verticalmente */
-        max-width: 100%; /* Permitir que ocupe todo el ancho */
-        width: 100%; /* Ocupa el 100% del ancho del viewport */
-        padding: 20px; /* Reducir padding en móvil */
-        margin: 20px auto 0 auto; /* Ajustar margen superior y centrar */
-        gap: 20px; /* Ajustar el espacio entre elementos apilados */
-      }
+    /* ESTILOS DE LA FOTO Y DATOS PERSONALES (ASIDE) */
+    .photo-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Centra la foto y el texto bajo ella */
+      text-align: center;
+      gap: 15px; /* Espacio entre la foto y el texto */
     }
 
-    /* Ajuste para pantallas de móvil más estrechas */
-    @media (max-width: 520px) {
-      .container {
-        padding: 15px;
-        gap: 15px;
-      }
+    .photo-wrap {
+      width: 200px; /* Tamaño de foto para móvil */
+      height: 200px;
+      border-radius: 14px; /* Un poco menos redondeado para móvil */
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(2,6,23,0.1), inset 0 1px 0 rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg,#f6fbfb,#ffffff);
     }
 
-
-    /* Photo column */
-    .photo-card{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:18px;
-      text-align:center;
-      /* Aseguramos que la photo-card no tenga un ancho fijo en móvil */
-      width: 100%; /* Ocupa el 100% del ancho de su padre (el container) */
+    .photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: inherit; /* Hereda el redondeo de photo-wrap */
     }
 
-    .photo-wrap{
-      width:320px; /* Ancho fijo para escritorio */
-      height:320px;
-      border-radius:20px;
-      overflow:hidden;
-      box-shadow: 0 20px 40px rgba(2,6,23,0.12), inset 0 1px 0 rgba(255,255,255,0.06);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:linear-gradient(180deg,#f6fbfb,#ffffff);
+    .name {
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: 0.2px;
+      color: #06202a;
+      margin-top: 5px; /* Ajuste fino */
     }
 
-    /* Adaptación de la foto para móviles */
-    @media (max-width:768px){
-      .photo-wrap{
-        width: 80%; /* Fluida, ocupa un 80% de la photo-card */
-        max-width: 280px; /* Pero con un máximo para no ser gigante */
-        height: auto;
-        aspect-ratio: 1 / 1;
-        border-radius:14px;
-      }
+    .roles {
+      color: var(--muted);
+      font-size: 14px;
     }
 
-    @media (max-width:520px){
-      .photo-wrap{
-        width: 90%;
-        max-width: 200px;
-        border-radius:12px;
-      }
+    .callout {
+      margin-top: 15px;
+      background: linear-gradient(90deg, #ffffff, rgba(14,165,164,0.03));
+      border-left: 4px solid var(--accent);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      color: #064546;
+      display: inline-block;
+      text-align: center; /* Centrar texto en móvil si es corto */
+      max-width: 100%; /* Asegura que no se desborde */
+      font-size: 13px;
     }
 
-    @media (max-width:380px){
-      .photo-wrap{
-        width: 100%;
-        max-width: 160px;
-        border-radius:10px;
-      }
+    /* ESTILOS DEL CONTENIDO PRINCIPAL (SECTION) */
+    .content {
+      /* Por defecto ocupa el 100% del ancho disponible en Flexbox */
+      padding: 0; /* Ya tenemos padding en el container */
     }
 
-
-    .photo{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
+    .eyebrow {
+      display: inline-block;
+      background: rgba(14,165,164,0.12);
+      color: var(--accent-dark);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 13px;
+      margin-bottom: 10px;
     }
 
-    .name{
-      font-weight:700;
-      font-size:20px;
-      letter-spacing:0.2px;
-      color:#06202a;
+    h1 {
+      margin: 6px 0 12px 0;
+      font-size: 26px;
+      line-height: 1.1;
     }
 
-    .roles{
-      color:var(--muted);
-      font-size:14px;
+    p.lead {
+      color: #0b1320;
+      margin: 0 0 15px 0;
+      font-size: 15px;
     }
 
-    /* Text column */
-    .content{
-      padding:6px 4px;
-      /* Aseguramos que el content no tenga un ancho fijo en móvil */
-      width: 100%; /* Ocupa el 100% del ancho de su padre (el container) */
+    .meta-list {
+      display: flex;
+      gap: 12px; /* Reducir gap en móvil */
+      flex-wrap: wrap;
+      margin: 15px 0 10px 0;
+      justify-content: center; /* Centrar items en móvil */
     }
 
-    .eyebrow{
-      display:inline-block;
-      background:rgba(14,165,164,0.12);
-      color:var(--accent-dark);
-      padding:6px 10px;
-      border-radius:999px;
-      font-weight:600;
-      font-size:13px;
-      margin-bottom:12px;
-    }
-
-    h1{
-      margin:6px 0 14px 0;
-      font-size:28px;
-      line-height:1.05;
-    }
-
-    /* Ajuste del tamaño de h1 para pantallas pequeñas */
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 24px;
-      }
-    }
-
-
-    p.lead{
-      color:#0b1320;
-      margin:0 0 18px 0;
-      font-size:15.5px;
-    }
-
-    .meta-list{
-      display:flex;
-      gap:18px;
-      flex-wrap:wrap;
-      margin:18px 0 10px 0;
-      justify-content: center; /* Centrar los meta-items en móvil por defecto */
-    }
-
-    /* En escritorio, los meta-items se alinean a la izquierda */
-    @media (min-width: 769px) {
-        .meta-list {
-            justify-content: flex-start;
-        }
-    }
-
-    .meta-item{
-      background:rgba(2,6,23,0.03);
-      border-radius:12px;
-      padding:10px 14px;
-      font-size:14px;
+    .meta-item {
+      background: rgba(2,6,23,0.03);
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-size: 13px;
       color: #0f172a;
-      display:flex;
-      gap:8px;
-      align-items:center;
-    }
-    @media (max-width: 380px) {
-      .meta-item {
-        font-size: 13px;
-        padding: 8px 12px;
-      }
+      display: flex;
+      gap: 6px;
+      align-items: center;
     }
 
+    .meta-item strong { font-weight: 700; }
 
-    .meta-item strong{ font-weight:700; }
-
-    .divider{
-      height:1px;
-      background:linear-gradient(90deg, rgba(2,6,23,0.04), rgba(2,6,23,0.02));
-      margin:18px 0;
-      border-radius:2px;
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, rgba(2,6,23,0.04), rgba(2,6,23,0.02));
+      margin: 18px 0;
+      border-radius: 2px;
     }
 
-    .long-text{
-      color:var(--muted);
-      font-size:15px;
-      white-space:pre-wrap;
+    .long-text {
+      color: var(--muted);
+      font-size: 14px;
+      white-space: pre-wrap;
     }
-    @media (max-width: 480px) {
-      .long-text {
-        font-size: 14px;
-      }
-    }
-
-
-    /* Callout */
-    .callout{
-      margin-top:18px;
-      background:linear-gradient(90deg, #ffffff, rgba(14,165,164,0.03));
-      border-left:4px solid var(--accent);
-      padding:12px 14px;
-      border-radius:8px;
-      font-weight:600;
-      color:#064546;
-      display:inline-block;
-      text-align: left;
-      max-width: 100%;
-      box-sizing: border-box;
-    }
-    @media (max-width: 480px) {
-      .callout {
-        font-size: 13px;
-        padding: 10px 12px;
-      }
-    }
-
 
     /* Small footer link */
-    .back-home{
-      margin-top:22px;
-      display:inline-flex;
-      gap:10px;
-      align-items:center;
-      font-size:14px;
-      color:var(--muted);
-      text-decoration:none;
-      border-radius:8px;
-      padding:8px 10px;
+    .back-home {
+      margin-top: 20px;
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      border-radius: 8px;
+      padding: 6px 8px;
     }
 
     /* Subtle 3D heading (optional) */
-    .title-3d{
-      display:inline-block;
-      position:relative;
-      font-weight:800;
-      color:#06202a;
-      padding-right:6px;
+    .title-3d {
+      display: inline-block;
+      position: relative;
+      font-weight: 800;
+      color: #06202a;
+      padding-right: 6px;
     }
-    .title-3d::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      transform:translate(6px,6px);
-      background:linear-gradient(180deg, rgba(2,6,23,0.03), rgba(2,6,23,0.02));
-      z-index:-1;
-      border-radius:6px;
+    .title-3d::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      transform: translate(4px,4px); /* Ajuste para móvil */
+      background: linear-gradient(180deg, rgba(2,6,23,0.03), rgba(2,6,23,0.02));
+      z-index: -1;
+      border-radius: 4px; /* Ajuste para móvil */
     }
 
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+    /* --- MEDIA QUERIES PARA TABLETAS Y ESCRITORIO --- */
 
-/* Efecto más sutil para la foto y el texto */
-.photo-card, .content {
-  opacity: 0;
-  animation: fadeInSub 1s ease-out forwards;
-}
+    /* A partir de 600px de ancho, empezamos a ensanchar un poco el diseño */
+    @media (min-width: 600px) {
+      body {
+        padding: var(--padding-tablet);
+      }
+      .container {
+        padding: var(--padding-tablet);
+        margin-top: 30px;
+        margin-bottom: 30px;
+        gap: var(--gap-tablet); /* Si defines una variable para gap de tablet */
+      }
+      .photo-wrap {
+        width: 250px;
+        height: 250px;
+        border-radius: 16px;
+      }
+      h1 {
+        font-size: 30px;
+      }
+      p.lead {
+        font-size: 16px;
+      }
+      .long-text {
+        font-size: 15px;
+      }
+      .callout {
+        font-size: 14px;
+        text-align: left; /* Alineado a la izquierda si tiene más espacio */
+      }
+    }
 
-.photo-card {
-  animation-delay: 0.3s;
-}
 
-.content {
-  animation-delay: 0.6s;
-}
+    /* **Breakpoint para escritorio: Dos columnas** */
+    @media (min-width: 880px) {
+      body {
+        padding: var(--padding-desktop);
+      }
+      .container {
+        display: grid; /* Volvemos a Grid para escritorio */
+        grid-template-columns: 360px 1fr; /* Dos columnas: foto fija, contenido flexible */
+        gap: var(--gap-desktop);
+        padding: var(--padding-desktop);
+        margin-top: 40px;
+        margin-bottom: 40px;
+      }
+      .photo-card {
+        align-items: center; /* Centrar foto en la columna izquierda */
+        text-align: center;
+      }
+      .photo-wrap {
+        width: 320px; /* Tamaño de foto para escritorio */
+        height: 320px;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(2,6,23,0.12), inset 0 1px 0 rgba(255,255,255,0.06);
+      }
+      .name {
+        font-size: 22px;
+      }
+      .roles {
+        font-size: 15px;
+      }
+      h1 {
+        font-size: 32px;
+        margin-bottom: 14px;
+      }
+      p.lead {
+        font-size: 17px;
+      }
+      .meta-list {
+        gap: 18px;
+        margin-top: 18px;
+        justify-content: flex-start; /* Alinear a la izquierda en escritorio */
+      }
+      .meta-item {
+        padding: 10px 14px;
+        font-size: 14px;
+      }
+      .long-text {
+        font-size: 15px;
+      }
+      .callout {
+        margin-top: 18px;
+        padding: 12px 14px;
+        font-size: 14px;
+        text-align: left;
+      }
+      .back-home {
+        margin-top: 22px;
+        font-size: 14px;
+      }
+      .title-3d::after {
+        transform: translate(6px,6px);
+        border-radius: 6px;
+      }
+    }
 
-@keyframes fadeInSub {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-/* --- ANIMACIONES DE ENTRADA --- */
 
-/* Contenedor principal con fade-in y desplazamiento */
-.container {
-  max-width: 1100px;
-  margin: 40px auto 0 auto;
-  background: var(--card);
-  border-radius: 12px;
-  box-shadow: var(--shadow);
-  padding: 28px;
-  display: grid;
-  grid-template-columns: 360px 1fr;
-  gap: 28px;
-  align-items: start;
-  opacity: 0;
-  transform: translateY(25px);
-  animation: fadeInUp 1.2s ease-out forwards;
-}
+    /* --- ANIMACIONES --- */
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(25px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
 
-/* Animaciones base */
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+    .photo-card, .content {
+      opacity: 0;
+      animation: fadeInSub 1s ease-out forwards;
+    }
 
-.photo-card,
-.content {
-  opacity: 0;
-  animation: fadeInSub 1s ease-out forwards;
-}
+    .photo-card { animation-delay: 0.3s; }
+    .content { animation-delay: 0.6s; }
 
-.photo-card {
-  animation-delay: 0.3s;
-}
+    @keyframes fadeInSub {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-.content {
-  animation-delay: 0.6s;
-}
+    .photo {
+      transform: scale(1.05);
+      opacity: 0;
+      animation: zoomFadeIn 1.6s ease-out forwards;
+      animation-delay: 0.3s;
+    }
 
-@keyframes fadeInSub {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* --- EFECTO DE ZOOM SUTIL EN LA FOTO --- */
-
-.photo {
-  width: 100%;
-  border-radius: 10px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
-  transform: scale(1.05);
-  opacity: 0;
-  animation: zoomFadeIn 1.6s ease-out forwards;
-  animation-delay: 0.3s;
-}
-
-@keyframes zoomFadeIn {
-  0% {
-    transform: scale(1.15);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
+    @keyframes zoomFadeIn {
+      0% { transform: scale(1.15); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
   </style>
 </head>
 <body>
@@ -418,7 +348,6 @@
     <!-- FOTO Y NOMBRE -->
     <aside class="photo-card" aria-label="Foto y datos">
       <div class="photo-wrap">
-        <!-- REEMPLAZAR: sustituí 'foto-nico.jpg' con el nombre de tu archivo. Mantener la ruta relativa correcta -->
         <img class="photo" src="Pablo.jpg" alt="Foto de Pablo Quis" />
       </div>
 
@@ -440,7 +369,7 @@
       <!-- PÁRRAFO BREVE (resume la idea) -->
       <p class="lead">
         <!-- REEMPLAZAR: Pega aquí el texto corto que acompañará a la fotografía. -->
- </p>
+      </p>
 
       <div class="meta-list" aria-hidden="true">
         <div class="meta-item"><strong>+20</strong> años de experiencia</div>
@@ -452,27 +381,25 @@
 
       <!-- TEXTO LARGO: AQUÍ PEGAS EL TEXTO COMPLETO -->
       <div class="long-text">
-        <!-- REEMPLAZAR: Pega aquí el texto completo que acompañará a la foto.
-             Puedes incluir párrafos, saltos de línea y listas. -->
-<p>Nací en el ‘83 en <strong>Bahía Blanca</strong> y me crié desde los 3 años en <strong>Sierra de la Ventana</strong>, un pueblito al sur de la provincia de Buenos Aires. Allí, en mi adolescencia, tuve mis primeros acercamientos a las computadoras y nació una pasión que me acompaña hasta hoy: la tecnología.</p>
+        <p>Nací en el ‘83 en <strong>Bahía Blanca</strong> y me crié desde los 3 años en <strong>Sierra de la Ventana</strong>, un pueblito al sur de la provincia de Buenos Aires. Allí, en mi adolescencia, tuve mis primeros acercamientos a las computadoras y nació una pasión que me acompaña hasta hoy: la tecnología.</p>
 
-<p>Es difícil determinar en qué momento empieza mi carrera como reparador de computadoras, porque es algo que se fue dando de a poco. Pero alrededor de los 17 años tuve mi primer trabajo formal en un cyber, en el que, además de atender al público, hacía el mantenimiento de las PC del local. Unos años después me fui a vivir a Bahía Blanca, donde reforcé mi aprendizaje con algunos cursos y una carrera de Analista (que no terminé). Allí también trabajé con mi primer gran mentor, <strong>Roberto Silvestri</strong>, quien me dio las bases que hoy siguen siendo los pilares de mi negocio: el trabajo a conciencia (hacer lo mío como si fuera para otro, y lo de otros como si fuera para mí), la honestidad y la responsabilidad.</p>
+        <p>Es difícil determinar en qué momento empieza mi carrera como reparador de computadoras, porque es algo que se fue dando de a poco. Pero alrededor de los 17 años tuve mi primer trabajo formal en un cyber, en el que, además de atender al público, hacía el mantenimiento de las PC del local. Unos años después me fui a vivir a Bahía Blanca, donde reforcé mi aprendizaje con algunos cursos y una carrera de Analista (que no terminé). Allí también trabajé con mi primer gran mentor, <strong>Roberto Silvestri</strong>, quien me dio las bases que hoy siguen siendo los pilares de mi negocio: el trabajo a conciencia (hacer lo mío como si fuera para otro, y lo de otros como si fuera para mí), la honestidad y la responsabilidad.</p>
 
-<p><strong>QService</strong> nació en el año 2010, cuando, junto a mi hermano, decidimos iniciar nuestro propio negocio de servicio técnico. Usamos para el nombre la “Q” de nuestro apellido, seguida de “Service”, y diseñamos el logo con la bolsa de compras y el botón de encendido representando la Q invertida.</p>
+        <p><strong>QService</strong> nació en el año 2010, cuando, junto a mi hermano, decidimos iniciar nuestro propio negocio de servicio técnico. Usamos para el nombre la “Q” de nuestro apellido, seguida de “Service”, y diseñamos el logo con la bolsa de compras y el botón de encendido representando la Q invertida.</p>
 
-<p>A los pocos meses de iniciar, conocí a la mamá de mi hijo, me mudé a Neuquén, y el negocio quedó en manos de mi hermano, quien lo continuó solo durante los siguientes 8 años, mientras yo incursionaba en otras actividades y rubros. En 2018, ya separado, me mudé a la ciudad de <strong>Plottier</strong> para retomar la actividad como técnico, que hacía tiempo me venía llamando desde las entrañas. Previa charla con mi hermano, seguí con el legado de la idea original y retomé el mismo nombre y el mismo logo, dando inicio a <strong>QService Plottier</strong>.</p>
+        <p>A los pocos meses de iniciar, conocí a la mamá de mi hijo, me mudé a Neuquén, y el negocio quedó en manos de mi hermano, quien lo continuó solo durante los siguientes 8 años, mientras yo incursionaba en otras actividades y rubros. En 2018, ya separado, me mudé a la ciudad de <strong>Plottier</strong> para retomar la actividad como técnico, que hacía tiempo me venía llamando desde las entrañas. Previa charla con mi hermano, seguí con el legado de la idea original y retomé el mismo nombre y el mismo logo, dando inicio a <strong>QService Plottier</strong>.</p>
 
-<p>Después de unos meses de batallar para ir haciéndome un lugar en el mercado, empecé a formar redes de confianza y trabajo compartido con algunos técnicos de la zona, creando alianzas que me permitieron agregar otros rubros a mi actividad principal, que era la reparación de PC. Así incursioné en la reparación de celulares —que hoy es mi rubro principal— y empecé a recibir impresoras, con el respaldo de <strong>Maxy de Ferlubru</strong>, y televisores, con el acompañamiento de <strong>Cristian de MyC</strong>.</p>
+        <p>Después de unos meses de batallar para ir haciéndome un lugar en el mercado, empecé a formar redes de confianza y trabajo compartido con algunos técnicos de la zona, creando alianzas que me permitieron agregar otros rubros a mi actividad principal, que era la reparación de PC. Así incursioné en la reparación de celulares —que hoy es mi rubro principal— y empecé a recibir impresoras, con el respaldo de <strong>Maxy de Ferlubru</strong>, y televisores, con el acompañamiento de <strong>Cristian de MyC</strong>.</p>
 
-<p>Finalmente, a mediados de 2025, inauguramos en Neuquén el <strong>taller de co-working de MyC</strong>, en el que unificamos los cuatro rubros: TV, impresoras, computadoras y celulares, ampliando los horizontes y con expectativas de seguir sumando nuevos sectores.</p>
+        <p>Finalmente, a mediados de 2025, inauguramos en Neuquén el <strong>taller de co-working de MyC</strong>, en el que unificamos los cuatro rubros: TV, impresoras, computadoras y celulares, ampliando los horizontes y con expectativas de seguir sumando nuevos sectores.</p>
 
-<p>Hoy, <strong>QService Plottier</strong> ya está consolidado como uno de los principales servicios técnicos de la ciudad, con una amplia cartera de clientes que confían día a día en mi trabajo, y sumando constantemente nuevos clientes que llegan por búsquedas en Google, folletos, tarjetas de contacto y, principalmente, por la recomendación boca a boca.</p>
+        <p>Hoy, <strong>QService Plottier</strong> ya está consolidado como uno de los principales servicios técnicos de la ciudad, con una amplia cartera de clientes que confían día a día en mi trabajo, y sumando constantemente nuevos clientes que llegan por búsquedas en Google, folletos, tarjetas de contacto y, principalmente, por la recomendación boca a boca.</p>
 
-<p>Con la firme convicción de que el único requisito para que un negocio funcione es <strong>hacer bien el trabajo</strong>, y con los pilares de <strong>trabajar a conciencia, con honestidad y responsabilidad</strong>, día a día QService crece y se fortalece como un servicio técnico de confianza, logrando destacarse en un mercado que avanza a pasos agigantados.</p>
+        <p>Con la firme convicción de que el único requisito para que un negocio funcione es <strong>hacer bien el trabajo</strong>, y con los pilares de <strong>trabajar a conciencia, con honestidad y responsabilidad</strong>, día a día QService crece y se fortalece como un servicio técnico de confianza, logrando destacarse en un mercado que avanza a pasos agigantados.</p>
 
-<p>Mi meta en los próximos años, como dueño de QService, es convertir mi negocio en una empresa que pueda brindar oportunidades de empleo y capacitación a los nuevos técnicos que deseen iniciarse en este apasionante mundo de la tecnología.</p>
+        <p>Mi meta en los próximos años, como dueño de QService, es convertir mi negocio en una empresa que pueda brindar oportunidades de empleo y capacitación a los nuevos técnicos que deseen iniciarse en este apasionante mundo de la tecnología.</p>
 
-<p><strong>QService – Seguí comunicándote.</strong></p>
+        <p><strong>QService – Seguí comunicándote.</strong></p>
       </div>
 
       <!-- OPCIONAL: CTA o contacto rápido -->
@@ -481,15 +408,5 @@
       </div>
     </section>
   </main>
-
-  <!-- NOTAS: instrucciones rápidas para usar -->
-  <!--
-    INSTRUCCIONES:
-    1) Reemplazá 'foto-nico.jpg' por el archivo de tu foto (subila al mismo directorio o ajustá la ruta).
-    2) Reemplazá el párrafo dentro de <p class="lead"> con el texto corto que querés que aparezca junto a la foto.
-    3) Reemplazá el bloque dentro de <div class="long-text"> con el texto extendido que me vas a enviar.
-    4) Si querés que la foto sea circular en vez de rectángulo, avisame y te doy la variante CSS.
-    5) Si querés que inserte la foto real y ajuste recorte/brillo/contraste, subila aquí y la adapto en la misma página.
-  -->
 </body>
 </html>

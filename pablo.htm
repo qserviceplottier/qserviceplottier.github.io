@@ -25,7 +25,8 @@
       -moz-osx-font-smoothing:grayscale;
       line-height:1.5;
       padding:32px; /* Padding por defecto para pantallas grandes */
-      box-sizing: border-box; /* Importante para que el padding no cause desbordamientos */
+      box-sizing: border-box; /* Muy importante para evitar desbordamientos */
+      overflow-x: hidden; /* Asegura que no haya scroll horizontal no deseado */
     }
 
     /* Ajuste de padding para pantallas más pequeñas */
@@ -43,14 +44,14 @@
 
     /* Container */
 .container{
-  max-width:1100px;
+  max-width:1100px; /* Ancho máximo para escritorio */
   margin:40px auto 0 auto;
   background:var(--card);
   border-radius:12px;
   box-shadow:var(--shadow);
   padding:28px;
   display:grid;
-  grid-template-columns: 360px 1fr; /* Dos columnas por defecto */
+  grid-template-columns: 360px 1fr; /* **Dos columnas por defecto en escritorio** */
   gap:28px;
   align-items:start;
   opacity:0;
@@ -59,18 +60,23 @@
   box-sizing: border-box; /* Asegurar que el padding se incluya en el ancho */
 }
 
-    /* Adaptable layout for small screens */
-    /* Aquí está la clave para que se ponga en una sola columna más pronto y la foto se ajuste */
-    @media (max-width:880px){ /* Puedes probar con 768px o incluso 600px si sigue habiendo problemas */
+    /* **Este es el breakpoint clave para los celulares y tabletas pequeñas** */
+    /* Aquí forzamos la estructura de una sola columna y ajustamos el ancho */
+    @media (max-width: 768px){ /* Cambiamos el breakpoint a 768px, más común para tabletas/móviles */
       .container{
-        grid-template-columns: 1fr; /* Una sola columna para todo el contenido */
+        grid-template-columns: 1fr; /* **¡Una sola columna para todo el contenido!** */
+        max-width: 100%; /* Permitir que el contenedor ocupe el 100% del ancho */
+        width: calc(100% - 30px); /* Ocupa el 100% del ancho con un margen a los lados (15px por lado) */
+        margin: 20px auto 0 auto; /* Centrar y reducir margen superior */
         padding:20px;
-        margin: 20px auto 0 auto; /* Reducir margen superior en móviles */
         gap: 20px; /* Ajustar el gap también */
       }
     }
+
+    /* Ajuste para pantallas aún más pequeñas */
     @media (max-width:520px){
       .container {
+        width: calc(100% - 20px); /* Reducir margen a los lados en pantallas muy pequeñas (10px por lado) */
         padding: 15px;
         gap: 15px;
       }
@@ -99,9 +105,10 @@
     }
 
     /* Media query para adaptar la foto en una sola columna */
-    @media (max-width:880px){ /* Coincide con el breakpoint del container */
+    /* Coincide con el breakpoint del container para la única columna */
+    @media (max-width:768px){
       .photo-wrap{
-        width: 80%; /* Hacer la foto más fluida, ocupa un 80% del ancho disponible */
+        width: 80%; /* Hacer la foto más fluida, ocupa un 80% del ancho disponible del photo-card */
         max-width: 280px; /* Pero que no se haga demasiado grande */
         height: auto; /* Altura automática para mantener la proporción */
         aspect-ratio: 1 / 1; /* Asegura que la proporción sea cuadrada */
@@ -187,12 +194,13 @@
       gap:18px;
       flex-wrap:wrap;
       margin:18px 0 10px 0;
-      justify-content: center; /* Centrar los meta-items en móvil */
+      justify-content: center; /* Centrar los meta-items en móvil por defecto en este layout */
     }
 
-    @media (max-width:880px){
+    /* En escritorio, los meta-items se alinean a la izquierda */
+    @media (min-width: 769px) { /* Esto es lo opuesto al breakpoint del móvil */
         .meta-list {
-            justify-content: flex-start; /* O dejarlo en flex-start si prefieres alineado a la izquierda */
+            justify-content: flex-start;
         }
     }
 

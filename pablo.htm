@@ -24,7 +24,20 @@
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
       line-height:1.5;
-      padding:32px;
+      padding:32px; /* Padding por defecto para pantallas grandes */
+    }
+
+    /* Ajuste de padding para pantallas más pequeñas */
+    @media (max-width: 768px) {
+      body {
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 15px;
+      }
     }
 
     /* Container */
@@ -49,6 +62,7 @@
       .container{
         grid-template-columns: 1fr;
         padding:20px;
+        margin: 20px auto 0 auto; /* Reducir margen superior en móviles */
       }
     }
 
@@ -75,6 +89,11 @@
 
     @media (max-width:520px){
       .photo-wrap{ width:220px; height:220px; border-radius:14px;}
+    }
+
+    /* Nueva media query para pantallas aún más pequeñas */
+    @media (max-width:380px){
+      .photo-wrap{ width:180px; height:180px; border-radius:12px;}
     }
 
     .photo{
@@ -118,6 +137,14 @@
       line-height:1.05;
     }
 
+    /* Ajuste del tamaño de h1 para pantallas pequeñas */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 24px;
+      }
+    }
+
+
     p.lead{
       color:#0b1320;
       margin:0 0 18px 0;
@@ -141,6 +168,14 @@
       gap:8px;
       align-items:center;
     }
+    /* Ajustar tamaño de meta-item para pantallas muy pequeñas si fuera necesario */
+    @media (max-width: 380px) {
+      .meta-item {
+        font-size: 13px;
+        padding: 8px 12px;
+      }
+    }
+
 
     .meta-item strong{ font-weight:700; }
 
@@ -156,6 +191,13 @@
       font-size:15px;
       white-space:pre-wrap; /* permite pegar texto con saltos */
     }
+    /* Ajustar tamaño de fuente del long-text para pantallas pequeñas */
+    @media (max-width: 480px) {
+      .long-text {
+        font-size: 14px;
+      }
+    }
+
 
     /* Callout */
     .callout{
@@ -167,7 +209,16 @@
       font-weight:600;
       color:#064546;
       display:inline-block;
+      text-align: left; /* Asegura que el texto no se corte */
     }
+    /* Ajuste para el callout en pantallas pequeñas */
+    @media (max-width: 480px) {
+      .callout {
+        font-size: 13px;
+        padding: 10px 12px;
+      }
+    }
+
 
     /* Small footer link */
     .back-home{
@@ -354,7 +405,7 @@
 
       <!-- TEXTO LARGO: AQUÍ PEGAS EL TEXTO COMPLETO -->
       <div class="long-text">
-        <!-- REEMPLAZAR: Pega aquí el texto completo que acompañará a la foto. 
+        <!-- REEMPLAZAR: Pega aquí el texto completo que acompañará a la foto.
              Puedes incluir párrafos, saltos de línea y listas. -->
 <p>Nací en el ‘83 en <strong>Bahía Blanca</strong> y me crié desde los 3 años en <strong>Sierra de la Ventana</strong>, un pueblito al sur de la provincia de Buenos Aires. Allí, en mi adolescencia, tuve mis primeros acercamientos a las computadoras y nació una pasión que me acompaña hasta hoy: la tecnología.</p>
 

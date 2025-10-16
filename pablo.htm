@@ -42,41 +42,41 @@
       }
     }
 
-    /* Container */
-.container{
-  max-width:1100px; /* Ancho máximo para escritorio */
-  margin:40px auto 0 auto;
-  background:var(--card);
-  border-radius:12px;
-  box-shadow:var(--shadow);
-  padding:28px;
-  display:grid;
-  grid-template-columns: 360px 1fr; /* **Dos columnas por defecto en escritorio** */
-  gap:28px;
-  align-items:start;
-  opacity:0;
-  transform:translateY(25px);
-  animation: fadeInUp 1.2s ease-out forwards;
-  box-sizing: border-box; /* Asegurar que el padding se incluya en el ancho */
-}
+    /* Container - Estilo por defecto para escritorio */
+    .container{
+      max-width:1100px; /* Ancho máximo para escritorio */
+      margin:40px auto 0 auto;
+      background:var(--card);
+      border-radius:12px;
+      box-shadow:var(--shadow);
+      padding:28px;
+      display:grid; /* Usamos Grid para escritorio (dos columnas) */
+      grid-template-columns: 360px 1fr;
+      gap:28px;
+      align-items:start;
+      opacity:0;
+      transform:translateY(25px);
+      animation: fadeInUp 1.2s ease-out forwards;
+      box-sizing: border-box; /* Asegurar que el padding se incluya en el ancho */
+    }
 
-    /* **Este es el breakpoint clave para los celulares y tabletas pequeñas** */
-    /* Aquí forzamos la estructura de una sola columna y ajustamos el ancho */
-    @media (max-width: 768px){ /* Cambiamos el breakpoint a 768px, más común para tabletas/móviles */
+    /* **BREAKPOINT CLAVE PARA MÓVILES** */
+    /* Aquí forzamos la estructura de una sola columna usando Flexbox */
+    @media (max-width: 768px){ /* Cambiamos a 768px para abarcar tabletas y móviles */
       .container{
-        grid-template-columns: 1fr; /* **¡Una sola columna para todo el contenido!** */
-        max-width: 100%; /* Permitir que el contenedor ocupe el 100% del ancho */
-        width: calc(100% - 30px); /* Ocupa el 100% del ancho con un margen a los lados (15px por lado) */
-        margin: 20px auto 0 auto; /* Centrar y reducir margen superior */
-        padding:20px;
-        gap: 20px; /* Ajustar el gap también */
+        display: flex; /* **¡Ahora usamos Flexbox!** */
+        flex-direction: column; /* Apilamos los elementos verticalmente */
+        max-width: 100%; /* Permitir que ocupe todo el ancho */
+        width: 100%; /* Ocupa el 100% del ancho del viewport */
+        padding: 20px; /* Reducir padding en móvil */
+        margin: 20px auto 0 auto; /* Ajustar margen superior y centrar */
+        gap: 20px; /* Ajustar el espacio entre elementos apilados */
       }
     }
 
-    /* Ajuste para pantallas aún más pequeñas */
-    @media (max-width:520px){
+    /* Ajuste para pantallas de móvil más estrechas */
+    @media (max-width: 520px) {
       .container {
-        width: calc(100% - 20px); /* Reducir margen a los lados en pantallas muy pequeñas (10px por lado) */
         padding: 15px;
         gap: 15px;
       }
@@ -90,6 +90,8 @@
       align-items:center;
       gap:18px;
       text-align:center;
+      /* Aseguramos que la photo-card no tenga un ancho fijo en móvil */
+      width: 100%; /* Ocupa el 100% del ancho de su padre (el container) */
     }
 
     .photo-wrap{
@@ -104,31 +106,29 @@
       background:linear-gradient(180deg,#f6fbfb,#ffffff);
     }
 
-    /* Media query para adaptar la foto en una sola columna */
-    /* Coincide con el breakpoint del container para la única columna */
+    /* Adaptación de la foto para móviles */
     @media (max-width:768px){
       .photo-wrap{
-        width: 80%; /* Hacer la foto más fluida, ocupa un 80% del ancho disponible del photo-card */
-        max-width: 280px; /* Pero que no se haga demasiado grande */
-        height: auto; /* Altura automática para mantener la proporción */
-        aspect-ratio: 1 / 1; /* Asegura que la proporción sea cuadrada */
-        border-radius:14px; /* Ajuste de radio */
+        width: 80%; /* Fluida, ocupa un 80% de la photo-card */
+        max-width: 280px; /* Pero con un máximo para no ser gigante */
+        height: auto;
+        aspect-ratio: 1 / 1;
+        border-radius:14px;
       }
     }
 
     @media (max-width:520px){
       .photo-wrap{
-        width: 90%; /* Un poco más ancha en pantallas más pequeñas */
+        width: 90%;
         max-width: 200px;
         border-radius:12px;
       }
     }
 
-    /* Nueva media query para pantallas aún más pequeñas (celulares muy pequeños) */
     @media (max-width:380px){
       .photo-wrap{
-        width: 100%; /* Puede ocupar todo el ancho si es necesario */
-        max-width: 160px; /* Máximo para que no sea gigante */
+        width: 100%;
+        max-width: 160px;
         border-radius:10px;
       }
     }
@@ -156,6 +156,8 @@
     /* Text column */
     .content{
       padding:6px 4px;
+      /* Aseguramos que el content no tenga un ancho fijo en móvil */
+      width: 100%; /* Ocupa el 100% del ancho de su padre (el container) */
     }
 
     .eyebrow{
@@ -194,11 +196,11 @@
       gap:18px;
       flex-wrap:wrap;
       margin:18px 0 10px 0;
-      justify-content: center; /* Centrar los meta-items en móvil por defecto en este layout */
+      justify-content: center; /* Centrar los meta-items en móvil por defecto */
     }
 
     /* En escritorio, los meta-items se alinean a la izquierda */
-    @media (min-width: 769px) { /* Esto es lo opuesto al breakpoint del móvil */
+    @media (min-width: 769px) {
         .meta-list {
             justify-content: flex-start;
         }
@@ -214,7 +216,6 @@
       gap:8px;
       align-items:center;
     }
-    /* Ajustar tamaño de meta-item para pantallas muy pequeñas si fuera necesario */
     @media (max-width: 380px) {
       .meta-item {
         font-size: 13px;
@@ -235,9 +236,8 @@
     .long-text{
       color:var(--muted);
       font-size:15px;
-      white-space:pre-wrap; /* permite pegar texto con saltos */
+      white-space:pre-wrap;
     }
-    /* Ajustar tamaño de fuente del long-text para pantallas pequeñas */
     @media (max-width: 480px) {
       .long-text {
         font-size: 14px;
@@ -255,11 +255,10 @@
       font-weight:600;
       color:#064546;
       display:inline-block;
-      text-align: left; /* Asegura que el texto no se corte */
-      max-width: 100%; /* Asegura que no se desborde */
-      box-sizing: border-box; /* Incluye padding en el ancho */
+      text-align: left;
+      max-width: 100%;
+      box-sizing: border-box;
     }
-    /* Ajuste para el callout en pantallas pequeñas */
     @media (max-width: 480px) {
       .callout {
         font-size: 13px;

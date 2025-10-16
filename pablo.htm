@@ -25,6 +25,7 @@
       -moz-osx-font-smoothing:grayscale;
       line-height:1.5;
       padding:32px; /* Padding por defecto para pantallas grandes */
+      box-sizing: border-box; /* Importante para que el padding no cause desbordamientos */
     }
 
     /* Ajuste de padding para pantallas más pequeñas */
@@ -49,22 +50,32 @@
   box-shadow:var(--shadow);
   padding:28px;
   display:grid;
-  grid-template-columns: 360px 1fr;
+  grid-template-columns: 360px 1fr; /* Dos columnas por defecto */
   gap:28px;
   align-items:start;
   opacity:0;
   transform:translateY(25px);
   animation: fadeInUp 1.2s ease-out forwards;
+  box-sizing: border-box; /* Asegurar que el padding se incluya en el ancho */
 }
 
     /* Adaptable layout for small screens */
-    @media (max-width:880px){
+    /* Aquí está la clave para que se ponga en una sola columna más pronto y la foto se ajuste */
+    @media (max-width:880px){ /* Puedes probar con 768px o incluso 600px si sigue habiendo problemas */
       .container{
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Una sola columna para todo el contenido */
         padding:20px;
         margin: 20px auto 0 auto; /* Reducir margen superior en móviles */
+        gap: 20px; /* Ajustar el gap también */
       }
     }
+    @media (max-width:520px){
+      .container {
+        padding: 15px;
+        gap: 15px;
+      }
+    }
+
 
     /* Photo column */
     .photo-card{
@@ -76,7 +87,7 @@
     }
 
     .photo-wrap{
-      width:320px;
+      width:320px; /* Ancho fijo para escritorio */
       height:320px;
       border-radius:20px;
       overflow:hidden;
@@ -87,14 +98,34 @@
       background:linear-gradient(180deg,#f6fbfb,#ffffff);
     }
 
-    @media (max-width:520px){
-      .photo-wrap{ width:220px; height:220px; border-radius:14px;}
+    /* Media query para adaptar la foto en una sola columna */
+    @media (max-width:880px){ /* Coincide con el breakpoint del container */
+      .photo-wrap{
+        width: 80%; /* Hacer la foto más fluida, ocupa un 80% del ancho disponible */
+        max-width: 280px; /* Pero que no se haga demasiado grande */
+        height: auto; /* Altura automática para mantener la proporción */
+        aspect-ratio: 1 / 1; /* Asegura que la proporción sea cuadrada */
+        border-radius:14px; /* Ajuste de radio */
+      }
     }
 
-    /* Nueva media query para pantallas aún más pequeñas */
-    @media (max-width:380px){
-      .photo-wrap{ width:180px; height:180px; border-radius:12px;}
+    @media (max-width:520px){
+      .photo-wrap{
+        width: 90%; /* Un poco más ancha en pantallas más pequeñas */
+        max-width: 200px;
+        border-radius:12px;
+      }
     }
+
+    /* Nueva media query para pantallas aún más pequeñas (celulares muy pequeños) */
+    @media (max-width:380px){
+      .photo-wrap{
+        width: 100%; /* Puede ocupar todo el ancho si es necesario */
+        max-width: 160px; /* Máximo para que no sea gigante */
+        border-radius:10px;
+      }
+    }
+
 
     .photo{
       width:100%;
@@ -156,6 +187,13 @@
       gap:18px;
       flex-wrap:wrap;
       margin:18px 0 10px 0;
+      justify-content: center; /* Centrar los meta-items en móvil */
+    }
+
+    @media (max-width:880px){
+        .meta-list {
+            justify-content: flex-start; /* O dejarlo en flex-start si prefieres alineado a la izquierda */
+        }
     }
 
     .meta-item{
@@ -210,6 +248,8 @@
       color:#064546;
       display:inline-block;
       text-align: left; /* Asegura que el texto no se corte */
+      max-width: 100%; /* Asegura que no se desborde */
+      box-sizing: border-box; /* Incluye padding en el ancho */
     }
     /* Ajuste para el callout en pantallas pequeñas */
     @media (max-width: 480px) {

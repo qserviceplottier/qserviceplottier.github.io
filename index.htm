@@ -4,42 +4,46 @@
     <meta charset="UTF-8">
     <meta property="og:title" content="QService">
     <meta property="og:description" content="Servicio tecnico especializado">
-    <meta property="og:image" content="https://github.com/qserviceplottier/qserviceplottier.github.io/blob/main/logo.png?raw=true">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <meta property="og:image" content="logo.png">
     <meta property="og:url" content="https://www.qservice.com.ar">
     <meta property="og:type" content="website">
-    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
+
     <title>QService</title>
 
     <style>
         body {
-            background-color: black;
+            margin: 0;
+            height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
-            height: 100vh;
-            margin: 0;
+            position: relative;
+
+            /* Imagen del fondo (mosaico de dispositivos electrónicos) */
+            background-image: url("fondo.jpg");
+            background-size: cover;        /* Que cubra todo */
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
-        /* Texto de bienvenida */
+        /* Capa que genera el fade circular hacia el centro */
+        body::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+
+            /* Radial gradient: oscuro en bordes, transparente en el centro */
+            background: radial-gradient(
+                circle,
+                rgba(0, 0, 0, 0) 0%,        /* Centro totalmente transparente */
+                rgba(0, 0, 0, 0.4) 40%,    /* Comienza a aparecer el oscurecimiento */
+                rgba(0, 0, 0, 0.7) 70%,    /* Más oscuro */
+                rgba(0, 0, 0, 1) 100%      /* Bordes negros */
+            );
+        }
+
         .welcome-text {
             font-size: 2.5em;
             color: white;
@@ -51,13 +55,14 @@
             font-weight: bold;
             text-align: center;
             text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+            z-index: 1;
         }
 
         .logo-img {
             width: 50vw;
             max-width: 400px;
             margin-bottom: 20px;
+            z-index: 1;
         }
 
         .button-img {
@@ -65,6 +70,7 @@
             max-width: 300px;
             cursor: pointer;
             transition: transform 0.2s ease, filter 0.2s ease;
+            z-index: 1;
         }
 
         .button-img:hover {
@@ -78,9 +84,11 @@
         }
     </style>
 </head>
+
 <body>
     <div class="welcome-text">BIENVENIDO!!</div>
     <img src="logo.png" alt="Logo de QService" class="logo-img">
     <img src="boton.png" alt="Botón Entrar" class="button-img" onclick="window.location.href='https://linktr.ee/qservice';">
 </body>
 </html>
+

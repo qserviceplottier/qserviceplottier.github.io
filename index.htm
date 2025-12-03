@@ -57,3 +57,31 @@
             text-align: center;
             box-shadow: 0 4px 10px rgba(0,0,0,0.35);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
+            user-select: none;
+        }
+
+        .button-html:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.45);
+        }
+
+        .button-html:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.35);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="fade-overlay"></div>
+
+    <div class="center-content">
+        <img src="logo.png" class="logo" alt="Logo">
+
+        <div class="button-html" onclick="window.location.href='https://linktr.ee/qservice';">
+            ENTRAR
+        </div>
+    </div>
+
+</body>
+</html>

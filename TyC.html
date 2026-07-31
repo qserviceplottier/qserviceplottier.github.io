@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 
 <meta charset="UTF-8">
@@ -13,6 +14,10 @@
 
 <style>
 
+*{
+    box-sizing:border-box;
+}
+
 body{
     margin:0;
     font-family:Arial,Helvetica,sans-serif;
@@ -22,10 +27,15 @@ body{
 }
 
 header{
-    background:#0f4ea8;
+    background:#0F4EA8;
     color:white;
     padding:40px 20px;
     text-align:center;
+}
+
+header img{
+    width:90px;
+    margin-bottom:15px;
 }
 
 header h1{
@@ -34,7 +44,229 @@ header h1{
 }
 
 header p{
-    margin-top:10px;
+    margin:8px 0 0;
+    opacity:.9;
+    font-size:1rem;
+}
+
+main{
+    max-width:900px;
+    margin:auto;
+    background:white;
+    margin-top:-20px;
+    margin-bottom:40px;
+    padding:40px;
+    border-radius:12px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+h2{
+    color:#0F4EA8;
+    margin-top:45px;
+}
+
+p{
+    margin:15px 0;
+}
+
+ul{
+    padding-left:22px;
+}
+
+li{
+    margin-bottom:10px;
+}
+
+.aviso{
+    background:#EEF5FF;
+    border-left:5px solid #0F4EA8;
+    padding:18px;
+    border-radius:8px;
+    margin-bottom:35px;
+}
+
+hr{
+    margin:50px 0 30px;
+    border:none;
+    border-top:1px solid #DDD;
+}
+
+.navegacion{
+    text-align:center;
+}
+
+.navegacion p{
+    margin-bottom:20px;
+}
+
+.boton{
+    display:inline-block;
+    background:#0F4EA8;
+    color:white;
+    text-decoration:none;
+    padding:12px 22px;
+    border-radius:8px;
+    margin:5px;
+    transition:.2s;
+}
+
+.boton:hover{
+    background:#08397D;
+}
+
+footer{
+    text-align:center;
+    color:#666;
+    padding:30px;
+}
+
+small{
+    color:#666;
+}
+
+@media (max-width:700px){
+
+main{
+    margin:0;
+    border-radius:0;
+    padding:25px;
+}
+
+.boton{
+    display:block;
+    width:100%;
+    margin:10px 0;
+}
+
+header img{
+    width:70px;
+}
+
+header h1{
+    font-size:1.6rem;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<img src="Fav.png" alt="QService">
+
+<h1>Términos y Condiciones del Servicio</h1>
+
+<p>Servicio Técnico de Electrónica · Plottier y Neuquén</p>
+
+</header>
+
+<main>
+
+<div class="aviso">
+
+Este documento establece las condiciones bajo las cuales QService recibe, diagnostica, repara y entrega equipos electrónicos.
+
+Nuestro objetivo es brindar un servicio transparente, profesional y claro, estableciendo los derechos y responsabilidades tanto del cliente como de QService.
+
+</div>
+
+<h2>1. Recepción del equipo</h2>
+
+<p>Todo equipo ingresado queda identificado mediante la información proporcionada por el cliente al momento de la recepción.</p>
+
+<p>La identificación podrá realizarse mediante marca y modelo, número de serie, IMEI o características físicas cuando corresponda.</p>
+
+<p>La recepción del equipo no implica la aceptación de un diagnóstico previo ni garantiza que la reparación sea posible.</p>
+
+<h2>2. Diagnóstico y presupuesto</h2>
+
+<ul>
+
+<li>La revisión y el presupuesto son gratuitos.</li>
+
+<li>El presupuesto informado tiene una validez de siete (7) días corridos.</li>
+
+<li>Durante el diagnóstico podrán detectarse otras fallas no relacionadas con el motivo principal del ingreso. En ese caso serán informadas al cliente.</li>
+
+<li>El cliente decidirá qué reparaciones desea realizar.</li>
+
+</ul>
+
+<h2>3. Información del cliente</h2>
+
+<p>El cliente es responsable de realizar las copias de seguridad que considere necesarias antes de entregar el equipo.</p>
+
+<p>QService no asume responsabilidad por pérdida de información, cuentas, fotografías, videos, documentos, configuraciones o aplicaciones existentes en el equipo.</p>
+
+<h2>4. Contraseñas y métodos de desbloqueo</h2>
+
+<p>Siempre que sea posible se solicitarán las credenciales necesarias para realizar pruebas funcionales.</p>
+
+<p>Si el cliente decide no proporcionarlas, determinadas verificaciones no podrán realizarse y la garantía quedará limitada únicamente a los ensayos efectivamente realizados.</p>
+
+<h2>5. Reparación</h2>
+
+<p>QService trabaja con el objetivo de solucionar el problema informado por el cliente.</p>
+
+<p>En algunos casos el diagnóstico requiere procedimientos cuya ejecución forma parte de la propia reparación.</p>
+
+<p>Si durante ese proceso surgen nuevas fallas o información relevante, el cliente será informado antes de continuar.</p>
+
+<h2>6. Derivación a terceros</h2>
+
+<p>Cuando una reparación requiera conocimientos, equipamiento o herramientas especializadas, QService podrá ofrecer la derivación del equipo a un tercero especializado.</p>
+
+<p>Esta situación será comunicada previamente al cliente para que pueda decidir libremente si acepta la derivación.</p>
+
+<h2>7. Equipos no retirados</h2>
+
+<p>Una vez informado el diagnóstico, el cliente dispone de siete (7) días corridos para comunicar si acepta o rechaza el presupuesto.</p>
+
+<p>Si la reparación no se realiza, el equipo deberá retirarse dentro de los quince (15) días corridos posteriores.</p>
+
+<p>Si la reparación fue aprobada, una vez notificado que el equipo se encuentra listo para entregar, deberá retirarse dentro de los treinta (30) días corridos.</p>
+
+<p>Transcurridos dichos plazos sin que el equipo sea retirado, QService podrá considerar abandonado el bien y deslindarse de toda responsabilidad por su conservación, deterioro, pérdida o disponibilidad para entrega, conforme a la legislación aplicable.</p>
+
+<h2>8. Aceptación</h2>
+
+<p>La entrega del equipo para su diagnóstico o reparación implica la aceptación de los presentes Términos y Condiciones del Servicio.</p>
+
+<hr>
+
+<div class="navegacion">
+
+<p><strong>¿Querés conocer más sobre QService?</strong></p>
+
+<a class="boton" href="index.html">
+Inicio
+</a>
+
+<a class="boton" href="como-trabajamos.html">
+Nuestra forma de trabajar
+</a>
+
+</div>
+
+</main>
+
+<footer>
+
+<small>
+
+Última actualización: Julio 2026
+
+</small>
+
+</footer>
+
+</body>
+
+</html>    margin-top:10px;
     opacity:.9;
 }
 

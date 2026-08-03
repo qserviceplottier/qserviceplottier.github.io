@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 
 <meta charset="UTF-8">
@@ -9,52 +10,183 @@
 
 <meta name="description" content="Servicio técnico especializado en celulares, computadoras, televisores e impresoras.">
 
-<meta name="robots" content="index,follow">
-<meta name="author" content="QService">
-<meta name="theme-color" content="#0F4EA8">
-
-<!-- Open Graph -->
-<meta property="og:type" content="website">
 <meta property="og:title" content="QService">
-<meta property="og:description" content="Servicio técnico especializado en celulares, computadoras, televisores e impresoras.">
-<meta property="og:url" content="https://qservice.com.ar">
-<meta property="og:image" content="https://qservice.com.ar/OG.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="QService - Servicio técnico especializado">
+<meta property="og:description" content="Servicio técnico especializado.">
+<meta property="og:image" content="OG.png">
 
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="QService">
-<meta name="twitter:description" content="Servicio técnico especializado en celulares, computadoras, televisores e impresoras.">
-<meta name="twitter:image" content="https://qservice.com.ar/OG.png">
-
-<link rel="icon" type="image/png" href="Fav.png">
+<link rel="icon" href="Fav.png">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-<link rel="stylesheet" href="style.css">
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f5f7fa;
+    color:#222;
+    display:flex;
+    justify-content:center;
+    padding:35px 15px;
+}
+
+.container{
+    width:100%;
+    max-width:520px;
+    background:white;
+    border-radius:18px;
+    box-shadow:0 8px 30px rgba(0,0,0,.08);
+    padding:40px 30px;
+    text-align:center;
+}
+
+.logo{
+    width:110px;
+    margin-bottom:15px;
+}
+
+h1{
+    color:#0F4EA8;
+    font-size:2.3rem;
+}
+
+.subtitulo{
+    margin-top:15px;
+    color:#666;
+    line-height:1.6;
+    font-size:18px;
+}
+
+.redes{
+    margin:35px 0;
+    display:flex;
+    justify-content:center;
+    gap:25px;
+}
+
+.redes a{
+    color:#555;
+    font-size:34px;
+    transition:.2s;
+}
+
+.redes a:hover{
+    color:#0F4EA8;
+    transform:scale(1.12);
+}
+
+hr{
+    border:none;
+    border-top:1px solid #E5E5E5;
+    margin:35px auto;
+    width:80%;
+}
+
+h2{
+    color:#666;
+    font-size:18px;
+    margin-bottom:20px;
+}
+
+.boton{
+    display:block;
+    text-decoration:none;
+    padding:18px;
+    border-radius:12px;
+    margin-bottom:15px;
+    font-size:18px;
+    font-weight:bold;
+    transition:.2s;
+}
+
+.boton:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 14px rgba(0,0,0,.10);
+}
+
+.principal{
+    background:#EAF8EF;
+    border:1px solid #CFE9D6;
+    color:#222;
+}
+
+.tienda{
+    background:#EEF5FF;
+    border:1px solid #D6E4FA;
+    color:#222;
+}
+
+.secundario{
+    background:#FAFAFA;
+    border:1px solid #DDD;
+    color:#222;
+}
+
+footer{
+    margin-top:30px;
+    color:#888;
+    font-size:14px;
+}
+
+@media(max-width:600px){
+
+.container{
+    padding:30px 20px;
+}
+
+.logo{
+    width:90px;
+}
+
+h1{
+    font-size:2rem;
+}
+
+.redes{
+    gap:20px;
+}
+
+.redes a{
+    font-size:30px;
+}
+
+}
+
+</style>
 
 </head>
 
 <body>
 
-<div class="contenedor">
+<div class="container">
 
-<img src="Logo.png" alt="QService" class="logo">
+<img src="Fav.png" class="logo" alt="QService">
 
 <h1>QService</h1>
 
-<p class="descripcion">
-Servicio técnico especializado.<br>
-Celulares, computadoras,<br>
-televisores e impresoras.
+<p class="subtitulo">
+
+Servicio técnico especializado
+
+<br><br>
+
+Celulares • Computadoras
+
+<br>
+
+Televisores • Impresoras
+
 </p>
 
 <div class="redes">
 
 <a href="https://www.facebook.com/share/1GSYqGBLPF/" target="_blank" title="Facebook">
-<i class="fab fa-facebook"></i>
+<i class="fab fa-facebook-f"></i>
 </a>
 
 <a href="https://instagram.com/qservice.plottier" target="_blank" title="Instagram">
@@ -77,14 +209,20 @@ televisores e impresoras.
 
 <hr>
 
-<a class="boton" href="https://wa.me/message/SLPAP2ODI4B7B1">
-<i class="fas fa-screwdriver-wrench"></i>
-Solicitar una reparación
+<a class="boton principal" href="https://wa.me/message/SLPAP2ODI4B7B1">
+
+<i class="fab fa-whatsapp"></i>
+&nbsp;
+Consultar una reparación
+
 </a>
 
-<a class="boton" href="https://tiendaqservice.com.ar">
-<i class="fas fa-store"></i>
+<a class="boton tienda" href="https://tiendaqservice.com.ar">
+
+<i class="fas fa-cart-shopping"></i>
+&nbsp;
 Tienda online
+
 </a>
 
 <hr>
@@ -92,67 +230,37 @@ Tienda online
 <h2>Conocé más sobre QService</h2>
 
 <a class="boton secundario" href="nuestra-historia.html">
+
 <i class="fas fa-book-open"></i>
+&nbsp;
 Nuestra historia
+
 </a>
 
 <a class="boton secundario" href="nuestra-forma-de-trabajar.html">
+
 <i class="fas fa-gears"></i>
+&nbsp;
 Nuestra forma de trabajar
+
 </a>
 
 <a class="boton secundario" href="TyC.html">
+
 <i class="fas fa-file-contract"></i>
+&nbsp;
 Términos y condiciones
+
 </a>
+
+<footer>
+
+© 2026 QService
+
+</footer>
 
 </div>
 
 </body>
+
 </html>
-
-<!--
-
-INDEX ORIGINAL
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta property="og:image" content="OG.png">
-<meta property="og:title" content="QService">
-<meta property="og:description" content="Servicio tecnico especializado">
-<link rel="icon" href="favicon.ico" type="image/png">
-
-<title>Q-service</title>
-
-<meta http-equiv="refresh" content="0; url=https://linktr.ee/qservice" />
-
-<style>
-body{
-margin:0;
-padding:0;
-overflow:hidden;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-font-family:Arial,Helvetica,sans-serif;
-}
-</style>
-
-</head>
-
-<body>
-
-<p>
-Redirigiendo.
-Si no funciona,
-<a href="https://linktr.ee/qservice/">clic acá</a>
-</p>
-
-</body>
-</html>
-
--->

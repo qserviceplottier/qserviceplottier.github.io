@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Puntos Q | QService</title>
+    <meta name="description" content="Encontrá tu Punto Q en Plottier o Neuquén para dejar y retirar equipos de QService. Consultá horarios, cómo llegar y coordiná por WhatsApp.">
+    <meta name="theme-color" content="#0F4EA8">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Puntos Q | QService">
+    <meta property="og:description" content="Encontrá tu Punto Q para dejar y retirar equipos de QService.">
+    <meta property="og:url" content="https://qservice.com.ar/puntosq.html">
+    <meta property="og:site_name" content="QService">
+
+    <link rel="icon" href="Fav.png" type="image/png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            min-height: 100%;
+            background: #ffffff;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #222;
+            line-height: 1.55;
+            padding: 30px 14px;
+            background-color: #ffffff;
+            background-image: url('fondo-tecnologia.png');
+            background-repeat: repeat;
+            background-position: top left;
+            background-size: 700px auto;
+            background-attachment: fixed;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 760px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 5px 24px rgba(0, 0, 0, 0.14);
+            overflow: hidden;
+        }
+
+        header {
+            background: #0F4EA8;
+            color: #fff;
+            text-align: center;
+            padding: 28px 22px 25px;
+        }
+
+        .logo-link {
+            display: inline-block;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+
+        .logo-link img {
+            display: block;
+            width: 76px;
+            height: 76px;
+            object-fit: contain;
+        }
+
+        header h1 {
+            font-size: clamp(1.8rem, 5vw, 2.35rem);
+            line-height: 1.15;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            max-width: 560px;
+            margin: 0 auto;
+            font-size: 1rem;
+        }
+
+        main {
+            padding: 26px;
+        }
+
+        .intro {
+            margin-bottom: 26px;
+        }
+
+        .intro p + p {
+            margin-top: 10px;
+        }
+
+        .section-title {
+            color: #0F4EA8;
+            font-size: 1.45rem;
+            margin: 28px 0 14px;
+            padding-bottom: 7px;
+            border-bottom: 2px solid #e3ebf7;
+        }
+
+        .location-card {
+            border: 1px solid #dce4ef;
+            border-radius: 14px;
+            padding: 18px;
+            margin-bottom: 14px;
+            background: #fff;
+        }
+
+        .location-card h3 {
+            color: #173e78;
+            font-size: 1.12rem;
+            margin-bottom: 9px;
+        }
+
+        .detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            margin: 6px 0;
+        }
+
+        .detail-icon {
+            flex: 0 0 22px;
+            text-align: center;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-top: 15px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 44px;
+            padding: 10px 15px;
+            border-radius: 9px;
+            font-size: 0.96rem;
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: filter 0.15s ease, transform 0.15s ease;
+        }
+
+        .button:hover {
+            filter: brightness(0.95);
+        }
+
+        .button:active {
+            transform: scale(0.99);
+        }
+
+        .button-primary {
+            color: #fff;
+            background: #0F4EA8;
+        }
+
+        .button-whatsapp {
+            color: #fff;
+            background: #16864a;
+        }
+
+        .button-secondary {
+            color: #0F4EA8;
+            background: #fff;
+            border-color: #0F4EA8;
+        }
+
+        .form-section {
+            margin-top: 30px;
+            padding: 22px;
+            border-radius: 14px;
+            background: #f3f7fd;
+            border: 1px solid #dce7f6;
+        }
+
+        .form-section h2 {
+            color: #0F4EA8;
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+
+        .form-section > p {
+            margin-bottom: 17px;
+        }
+
+        .form-row {
+            margin-bottom: 14px;
+        }
+
+        label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            min-height: 46px;
+            padding: 11px 12px;
+            border: 1px solid #aebed2;
+            border-radius: 8px;
+            background: #fff;
+            color: #222;
+            font: inherit;
+        }
+
+        textarea {
+            min-height: 105px;
+            resize: vertical;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: 3px solid rgba(15, 78, 168, 0.18);
+            border-color: #0F4EA8;
+        }
+
+        .optional {
+            color: #555;
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+
+        .form-note {
+            margin: 12px 0 16px;
+            color: #454545;
+            font-size: 0.92rem;
+        }
+
+        .form-section .button {
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .video-section {
+            margin-top: 26px;
+            padding: 18px;
+            border: 1px dashed #aebed2;
+            border-radius: 12px;
+            text-align: center;
+            background: #fff;
+        }
+
+        .video-section h2 {
+            color: #0F4EA8;
+            font-size: 1.2rem;
+            margin-bottom: 6px;
+        }
+
+        .video-section p {
+            color: #555;
+        }
+
+        footer {
+            padding: 18px 22px 23px;
+            text-align: center;
+            color: #555;
+            font-size: 0.9rem;
+            border-top: 1px solid #edf0f4;
+        }
+
+        footer a {
+            color: #0F4EA8;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 16px 9px;
+                background-size: 500px auto;
+            }
+
+            .container {
+                border-radius: 14px;
+            }
+
+            header {
+                padding: 23px 16px 21px;
+            }
+
+            .logo-link img {
+                width: 66px;
+                height: 66px;
+            }
+
+            main {
+                padding: 19px 15px;
+            }
+
+            .location-card {
+                padding: 15px;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .actions .button {
+                width: 100%;
+            }
+
+            .form-section {
+                padding: 17px 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a class="logo-link" href="index.html" aria-label="Ir a la página principal de QService">
+                <img src="logo_qservice.png" alt="Logo de QService">
+            </a>
+            <h1>Puntos Q</h1>
+            <p>Encontrá dónde dejar y retirar tu equipo para reparar con QService.</p>
+        </header>
+
+        <main>
+            <section class="intro" aria-label="Cómo funcionan los Puntos Q">
+                <p>Para que puedas acercar tu equipo de manera cómoda, QService cuenta con distintos <strong>Puntos Q</strong> en Plottier y Neuquén.</p>
+                <p>Elegí el lugar que te quede mejor y acercá tu equipo dentro del horario indicado. <strong>Para consultas, presupuestos y seguimiento de la reparación, comunicate directamente con QService.</strong></p>
+                <p>Podés escribirnos por WhatsApp antes de llevarlo o completar el formulario opcional de esta página para informarnos qué equipo vas a acercar y a qué punto.</p>
+            </section>
+
+            <section aria-labelledby="plottier-title">
+                <h2 class="section-title" id="plottier-title">📍 Plottier</h2>
+
+                <article class="location-card">
+                    <h3>Kiosco Prime 289</h3>
+                    <p class="detail"><span class="detail-icon" aria-hidden="true">📍</span><span>Perito Moreno 289</span></p>
+                    <p class="detail"><span class="detail-icon" aria-hidden="true">🕒</span><span>Lunes a sábados, de 9 a 23 h</span></p>
+                    <div class="actions">
+                        <a class="button button-primary" href="https://maps.app.goo.gl/57cyVwYhuaVxSaGB8" target="_blank" rel="noopener noreferrer">🗺️ Cómo llegar con Google Maps</a>
+                        <a class="button button-whatsapp" href="https://wa.me/5492995323954?text=Hola%20QService%2C%20quiero%20consultar%20por%20una%20reparaci%C3%B3n%20y%20coordinar%20la%20entrega%20en%20Kiosco%20Prime%20289." target="_blank" rel="noopener noreferrer">💬 Consultar por WhatsApp</a>
+                    </div>
+                </article>
+
+                <article class="location-card">
+                    <h3>Ferlubru Impresoras</h3>
+                    <p class="detail"><span class="detail-icon" aria-hidden="true">📍</span><span>Nicola Tesla 1899, barrio Villa Lida</span></p>
+                    <p class="detail"><span class="detail-icon" aria-hidden="true">🕒</span><span>Lunes a sábados, de 10 a 19 h</span></p>
+                    <div class="actions">
+                        <a class="button button-primary" href="https://maps.app.goo.gl/XLmDkTijsg6AxHVW6" target="_blank" rel="noopener noreferrer">🗺️ Cómo llegar con Google Maps</a>
+                        <a class="button button-whatsapp" href="https://wa.me/5492995323954?text=Hola%20QService%2C%20quiero%20consultar%20por%20una%20reparaci%C3%B3n%20y%20coordinar%20la%20entrega%20en%20Ferlubru%20Impresoras." target="_blank" rel="noopener noreferrer">💬 Consultar por WhatsApp</a>
+                    </div>
+                </article>
+
+                <article class="location-card">
+                    <h3>TabCel MR</h3>
+                    <p class="detail"><span class="detail-icon" aria-hidden="true">📍</span><span>Chubut 224, barrio Tagliaferri</span></p>
+                    <p class="detail"><span class="detail-icon" aria-hidden="true">🕒</span><span>Lunes a viernes, de 8 a 12 h</span></p>
+                    <div class="actions">
+                        <a class="button button-primary" href="https://maps.app.goo.gl/M4d32GkuB7SurY8A9" target="_blank" rel="noopener noreferrer">🗺️ Cómo llegar con Google Maps</a>
+                        <a class="button button-whatsapp" href="https://wa.me/5492995323954?text=Hola%20QService%2C%20quiero%20consultar%20por%20una%20reparaci%C3%B3n%20y%20coordinar%20la%20entrega%20en%20TabCel%20MR." target="_blank" rel="noopener noreferrer">💬 Consultar por WhatsApp</a>
+                    </div>
+                </article>
+            </section>
+
+            <section aria-labelledby="neuquen-title">
+                <h2 class="section-title" id="neuquen-title">📍 Neuquén</h2>
+
+                <article class="location-card">
+                    <h3>MyC Electrónica y Computación</h3>
+                    <p class="detail"><span class="detail-icon" aria-hidden="true">📍</span><span>Sarmiento 998, casi esquina Gatica</span></p>
+                    <p class="detail"><span class="detail-icon" aria-hidden="true">🕒</span><span>Lunes a viernes, de 9 a 21 h<br>Sábados, de 9 a 18 h</span></p>
+                    <div class="actions">
+                        <a class="button button-primary" href="https://maps.app.goo.gl/n2yBRu6P18PWpq8h6" target="_blank" rel="noopener noreferrer">🗺️ Cómo llegar con Google Maps</a>
+                        <a class="button button-whatsapp" href="https://wa.me/5492995323954?text=Hola%20QService%2C%20quiero%20consultar%20por%20una%20reparaci%C3%B3n%20y%20coordinar%20la%20entrega%20en%20MyC%20Electr%C3%B3nica%20y%20Computaci%C3%B3n." target="_blank" rel="noopener noreferrer">💬 Consultar por WhatsApp</a>
+                    </div>
+                </article>
+            </section>
+
+            <section class="form-section" aria-labelledby="form-title">
+                <h2 id="form-title">¿Querés informar qué equipo vas a llevar?</h2>
+                <p>Si querés, completá estos datos y se preparará un mensaje para enviarnos por WhatsApp. También podés escribirnos directamente sin completar el formulario.</p>
+
+                <form id="intake-form">
+                    <div class="form-row">
+                        <label for="customer-name">Nombre y apellido *</label>
+                        <input id="customer-name" name="customer-name" type="text" autocomplete="name" required>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="customer-phone">Tu número de teléfono *</label>
+                        <input id="customer-phone" name="customer-phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Ej.: 299 555 1234" required>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="dropoff-point">¿En qué Punto Q vas a dejar el equipo? *</label>
+                        <select id="dropoff-point" name="dropoff-point" required>
+                            <option value="">Elegí un punto</option>
+                            <option>Kiosco Prime 289 — Plottier</option>
+                            <option>Ferlubru Impresoras — Plottier</option>
+                            <option>TabCel MR — Plottier</option>
+                            <option>MyC Electrónica y Computación — Neuquén</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="device-type">¿Qué equipo vas a llevar? *</label>
+                        <select id="device-type" name="device-type" required>
+                            <option value="">Elegí el tipo de equipo</option>
+                            <option>Celular</option>
+                            <option>Computadora o notebook</option>
+                            <option>Televisor</option>
+                            <option>Impresora</option>
+                            <option>Otro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="device-model">Marca y modelo <span class="optional">(opcional)</span></label>
+                        <input id="device-model" name="device-model" type="text" placeholder="Ej.: Samsung A54">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="device-fault">¿Qué problema tiene el equipo? *</label>
+                        <textarea id="device-fault" name="device-fault" required placeholder="Contanos brevemente qué le pasa al equipo."></textarea>
+                    </div>
+
+                    <p class="form-note">* Los campos marcados son obligatorios. Este aviso no es una orden de reparación ni confirma un presupuesto. Los datos se incluirán en un mensaje de WhatsApp; esta página no los guarda.</p>
+
+                    <button class="button button-whatsapp" type="submit">💬 Preparar mensaje para WhatsApp</button>
+                </form>
+            </section>
+
+            <section class="video-section" aria-labelledby="video-title">
+                <h2 id="video-title">¿Necesitás ayuda para usar los Puntos Q?</h2>
+                <p>Próximamente vas a encontrar acá un video explicativo, con los pasos para elegir dónde llevar tu equipo y coordinar la entrega.</p>
+                <!-- Cuando el video esté publicado, reemplazar este contenido por el reproductor de YouTube. -->
+            </section>
+        </main>
+
+        <footer>
+            <p>¿Tenés dudas? <a href="https://wa.me/5492995323954?text=Hola%20QService%2C%20tengo%20una%20consulta." target="_blank" rel="noopener noreferrer">Contactá a QService por WhatsApp</a>.</p>
+            <p style="margin-top: 8px;"><a href="index.html">Volver a la página principal de QService</a></p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('intake-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const name = document.getElementById('customer-name').value.trim();
+            const phone = document.getElementById('customer-phone').value.trim();
+            const point = document.getElementById('dropoff-point').value;
+            const device = document.getElementById('device-type').value;
+            const model = document.getElementById('device-model').value.trim();
+            const fault = document.getElementById('device-fault').value.trim();
+
+            const message = [
+                'Hola QService. Quiero informar una próxima entrega de equipo.',
+                '',
+                'Nombre y apellido: ' + name,
+                'Teléfono: ' + phone,
+                'Punto Q elegido: ' + point,
+                'Equipo: ' + device,
+                'Marca y modelo: ' + (model || 'No indicado'),
+                'Falla declarada: ' + fault,
+                '',
+                'Este mensaje es para coordinar la entrega; todavía no autoriza una reparación.'
+            ].join('\n');
+
+            const whatsappUrl = 'https://wa.me/5492995323954?text=' + encodeURIComponent(message);
+            window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+        });
+    </script>
+</body>
+</html>
